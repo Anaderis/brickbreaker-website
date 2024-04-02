@@ -48,14 +48,14 @@ if(isset($_POST["submit"])){
 
         require_once "DB_Conn.php";
 
-        $sql = "SELECT * FROM t_joueur
-                WHERE J_User = '$Userlogin' AND J_MDP='$passwordlogin'";
+        $sql = "SELECT * FROM t_user
+                WHERE user_name = '$Userlogin' AND user_password='$passwordlogin'";
 
         $result = mysqli_query($conn, $sql);
         if(mysqli_num_rows($result) === 1){
 
             $row = mysqli_fetch_assoc($result); 
-            if($row['J_User']===$Userlogin && $row['J_MDP'] === $passwordlogin){
+            if($row['user_name']===$Userlogin && $row['user_password'] === $passwordlogin){
 
                 $_SESSION['Photo'] = $row['J_photo'];
                 $_SESSION['User'] = $row['J_User'];

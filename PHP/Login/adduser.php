@@ -45,7 +45,7 @@ if(isset($_POST["submit-register"])){
         $randomId = generateRandomId();
 
         // Check si l'ID existe déjà dans la base de données
-        $sqlCheck = "SELECT J_Id FROM t_joueur WHERE J_id = '$randomId'";
+        $sqlCheck = "SELECT user_ID FROM t_user WHERE user_ID = '$randomId'";
         $result = $conn->query($sqlCheck);
 
         if ($result->num_rows > 0) {
@@ -61,13 +61,13 @@ if(isset($_POST["submit-register"])){
         $sanitizedEmail = sanitizeEmail($emailregister);
         
         // Check si l'email existe déjà dans la base de données
-        $sqlCheck = "SELECT J_ADR FROM t_joueur WHERE J_ADR = '$sanitizedEmail'";
+        $sqlCheck = "SELECT user_email FROM t_user WHERE user_email = '$sanitizedEmail'";
         $result = $conn->query($sqlCheck);
         
         if ($result->num_rows > 0) {
             array_push($errors, "Email already exist." );
         } else {
-            $sql = "INSERT INTO t_joueur (J_Id, J_ADR, J_MDP, J_User) VALUES (?, ?, ?, ?)";
+            $sql = "INSERT INTO t_user (user_ID, user_email, user_password, user_name) VALUES (?, ?, ?, ?)";
             $stmt = mysqli_stmt_init($conn);
             $preparestmt = mysqli_stmt_prepare($stmt, $sql);
             if($preparestmt){

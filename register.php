@@ -100,6 +100,15 @@
                                             <h6>Repeat PassWord</h6> 
                                             <input type="password" name="password-check-register" placeholder="Repeat your PassWord">
                                         </div>
+                                        <div class="divloginholder">
+                                            <label for="type">You are :</label>
+                                                <select name="type">
+                                                    <option value="">...</option>
+                                                    <option value="1">An administrator</option>
+                                                    <option value="2">A creator</option>
+                                                    <option value="3">A player</option>
+                                                </select>
+                                        </div>
                                     </div>
                                 </div>
                                 <?php include "./PHP/Login/adduser.php"?>
