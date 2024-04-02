@@ -24,7 +24,7 @@
 <body>
     <header>
         <nav>
-            <a href="./bdd-mount.php">
+            <a href="./wow-armory.php">
                 <img class="logoWOW" src="./Assets/logo.png" alt="logoWOW">
             </a>
         </nav>
@@ -34,11 +34,11 @@
         <div class="loginConteneur">
             <div class="loginhtml">
                 <div class="loginbutton ombre backgroundBlanc itemcenter">
-                    <input id="tab-signin" type="radio" name="tab" class="login"  onclick="hide_register()">
+                    <input id="tab-signin" type="radio" name="tab" class="login" checked onclick="hide_register()">
                     <label for="tab-signin" class="tab">Sign In</label>
                 </div>
                 <div class="registerbutton ombre backgroundBlanc itemcenter">
-                    <input id="tab-signup" type="radio" name="tab" class="register" checked onclick="hide_login()">
+                    <input id="tab-signup" type="radio" name="tab" class="register" onclick="hide_login()">
                     <label for="tab-signup" class="tab">Sign Up</label>
                 </div>
                 <div class="loginform " >
@@ -60,6 +60,7 @@
                                     <input id="check" type="checkbox" class="check">
                                     <label for="check"><span class="icon"></span> Keep me Signed in</label>
                                 </div>
+                                <?php include "./PHP/Login/auth.php"?>
                                 <div class="submitbuttonlogin">
                                     <input type="submit" name="submit"  value="Login">
                                 </div>
@@ -102,7 +103,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <?php include "./PHP/Login/adduser.php"?>
                                 <div class="submitbuttonregister">
                                     <input type="submit" name="submit-register" value="Register">
                                 </div>
@@ -130,20 +130,16 @@
                 //element.attribute.set(hide = true)
                 //Récupération element avec ID = register_vue
                 //element.attribute.set(hide = false)
-                function hide_register() {
-                    document.getElementById("register_vue").style.display = "none";
-                    document.getElementById("login_vue").style.display = "block";
-                }
-
-                function hide_login() {
-                    document.getElementById("login_vue").style.display = "none";
-                    document.getElementById("register_vue").style.display = "block";
-                }
-
-                // Simulate a click on the "Sign Up" tab when the page loads
-                    document.addEventListener("DOMContentLoaded", function() {
-                    document.getElementById("tab-signup").click();
-                });
+            function hide_register() {
+                document.getElementById("register_vue").style.display = "none";
+                document.getElementById("login_vue").style.display = "block";
+            }
+        
+            function hide_login() {
+                document.getElementById("login_vue").style.display = "none";
+                document.getElementById("register_vue").style.display = "block";
+                
+            }
         </script>
         <style>
             #register_vue {
