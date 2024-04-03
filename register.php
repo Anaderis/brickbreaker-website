@@ -78,7 +78,7 @@
                             <h2>Sign Up</h2>
                         </div>
                         
-                        <form action="register.php" method="post">
+                        <form action="register.php" method="post" enctype="multipart/form-data">
                             <div class="registerholder">
                                 <div class="textholder">
                                     <div class="textregisterholder">
@@ -104,11 +104,15 @@
                                             <label for="type">You are :</label>
                                                 <select name="type">
                                                     <option value="">...</option>
-                                                    <option value="1">An administrator</option>
-                                                    <option value="2">A creator</option>
-                                                    <option value="3">A player</option>
+                                                    <option value="admin">An administrator</option>
+                                                    <option value="creator">A creator</option>
+                                                    <option value="player">A player</option>
                                                 </select>
                                         </div>
+
+                                        <label for="file">Upload your game</label>
+                                        <input type="file" name="file"> 
+                                    
                                     </div>
                                 </div>
                                 <?php include "./PHP/Login/adduser.php"?>
