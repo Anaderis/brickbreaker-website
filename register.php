@@ -120,11 +120,6 @@
                                     <input type="submit" name="submit-register" value="Register">
                                 </div>
                                 
-                                <div class="hrregisterconteneur">
-                                    <div class="footerboxregister">
-                                        <label class="alreadymember" for="tab-signin">Already Member?</a>
-                                    </div>
-                                </div>
                             </div>
                         </form>
                     </div>
