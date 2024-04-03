@@ -44,7 +44,7 @@ if (isset ($_SESSION["Loggedin"])) {
                         <h1>
                             <?php
 
-                            if ($_SESSION['type'] != "admin") {
+                            if ($_SESSION['type'] = "admin") {
                                 echo 'bonjour'. $_SESSION['User'];
                             }else{
                                 echo "Vous n'êtes pas Admin,". $_SESSION['User'];
