@@ -1,16 +1,12 @@
 <?php
-session_start();
 
+session_start();
 
 if (isset ($_SESSION["Loggedin"])) {
     $user = $_SESSION["Loggedin"];
     $id = $_SESSION["Id"];
 }
 ?>
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -44,42 +40,45 @@ if (isset ($_SESSION["Loggedin"])) {
             <div class="profilhtml">
                 <div class="profilform ombre">
                     <div class="profilholder">
-                        <img class="photo" src=<?php echo $_SESSION['Photo'] ?> alt="user" />
+                        <img class="photo" src=<?php echo $_SESSION['type'] ?> alt="user" />
                         <h1>
                             <?php
-                            if ($id != 666) {
-                                echo $user;
+
+                            if ($_SESSION['type'] != "admin") {
+                                echo 'bonjour'. $_SESSION['User'];
                             }else{
-                                echo $user;
+                                echo "Vous n'êtes pas Admin,". $_SESSION['User'];
                             }
                             ?>
                         </h1>
                     </div>
                 </div>
-                <?php if ($id != 666) {
+                <?php 
+                
+                // if ($id != 666) {
 
-                    echo '<div class="Monture-conteneur ombre">
-                    <h1>Monture</h1>
-                    <div class="text">';
-                    require_once "./PHP/MonCompte/conn-monture.php";
-                    echo '</div>
-                </div>
-                <div class="Equipement-conteneur ombre">
-                    <h1>Equipement</h1>
-                    <div class="text">';
+                    // echo '<div class="Monture-conteneur ombre">
+                    // <h1>Monture</h1>
+                    // <div class="text">';
+                    // require_once "./PHP/MonCompte/conn-monture.php";
+                    // echo '</div>
+                // </div>
+                // <div class="Equipement-conteneur ombre">
+                //     <h1>Equipement</h1>
+                //     <div class="text">';
 
-                    require_once "./PHP/MonCompte/conn-equipement.php";
+                //     require_once "./PHP/MonCompte/conn-equipement.php";
 
-                    echo '</div></div>';
+                //     echo '</div></div>';
 
-                } else {
-                    echo '<div class="Joueur-conteneur ombre">
-                    <h1>Joueur</h1>
-                    <div class="text">';
+                // } else {
+                //     echo '<div class="Joueur-conteneur ombre">
+                //     <h1>Joueur</h1>
+                //     <div class="text">';
 
-                        require_once "./PHP/MonCompte/conn-joueur.php";
-                    echo '</div></div>';
-                } ?>
+                //         require_once "./PHP/MonCompte/conn-joueur.php";
+                //     echo '</div></div>';
+                // } ?>
             </div>
         </div>
     </main>

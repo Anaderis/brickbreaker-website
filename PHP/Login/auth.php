@@ -58,10 +58,10 @@ if(isset($_POST["submit"])){
             if($row['user_name']===$Userlogin && $row['user_password'] === $passwordlogin){
 
                 $_SESSION['Photo'] = $row['J_photo'];
-                $_SESSION['User'] = $row['J_User'];
-                $_SESSION['Id'] = $row['J_Id'];
+                $_SESSION['User'] = $row['user_name'];
+                $_SESSION['type'] = $row['user_type'];
                 $_SESSION['Loggedin'] = $_SESSION['User'];
-                header("Location: ./wow-armory.php");
+                header("Location: ./MonCompte.php");
 
                 exit();
             } 
