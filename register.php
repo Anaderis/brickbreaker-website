@@ -104,7 +104,6 @@
                                             <label for="type">You are :</label>
                                                 <select id="status" name="type">
                                                     <option value="">...</option>
-                                                    <option value="admin">An administrator</option>
                                                     <option value="creator">A creator</option>
                                                     <option value="player">A player</option>
                                                 </select>
@@ -145,7 +144,7 @@
               
 
                 function hide_register() {
-                    document.getElementById("register_vue").style.display = "none";
+                    // document.getElementById("register_vue").style.display = "none";
                     document.getElementById("login_vue").style.display = "block";
                 }
 
