@@ -25,7 +25,7 @@ if(isset($_POST["submit-register"])){
     $size = $_FILES['file']['size'];
     $error = $_FILES['file']['error'];
 
-    move_uploaded_file($tmpName, './Uploads/'.$name);
+    
 
     //Vérification de l'extension du fichier. 
     //Le explode va créer deux éléments : le nom du fichier + l'extension car le séparateur est le point.
@@ -35,35 +35,19 @@ if(isset($_POST["submit-register"])){
 
     // Transforme le texte en minuscules
     $extension = strtolower(end($tabExtension));
+    //
     //Tableau des extensions que l'on accepte
-    $extensions = ['c', 'png', 'jpeg', 'txt'];
+    $extensions = ['jpg', 'png', 'jpeg', 'gif'];
 
     $maxSize = 400000;
 
-    //Filtre des extensions acceptées
+    $array = in_array($extension, $extensions);
 
-    if(in_array($extension, $extensions)){
-        move_uploaded_file($tmpName, './Uploads/'.$name);
-    }
-    else{
-        echo "Bad extension file";
-    }
 
-    // Contrôle de la taille du fichier
+    // echo $extension;
+    // echo gettype($extensions[0]);
+    // echo $array;
 
-    if(in_array($extension, $extensions) && $size <= $maxSize){
-        move_uploaded_file($tmpName, './Uploads/'.$name);
-    }
-    else{
-        echo "File is too large";
-    }
-
-    if(in_array($extension, $extensions) && $size <= $maxSize && $error == 0){
-        move_uploaded_file($tmpName, './Uploads/'.$name);
-    }
-    else{
-        echo "Something bad happened";
-    }
 
     // Vérification d'un nom unique de fichier
 
@@ -73,8 +57,24 @@ if(isset($_POST["submit-register"])){
         $file = $uniqueName.".".$extension;
         //$file = 5f586bf96dcd38.73540086.jpg
         move_uploaded_file($tmpName, './Uploads/'.$file);
+        echo "fichier upload";
+    
+    }
+    else if ($size >= $maxSize){
+        echo "File is too large";
+    }
+    else if ($error!=0) {
+        echo "Something bad happened";
+    }
+    else if (!in_array($extension, $extensions)){
+        echo "Bad extension";
     }
 
+
+
+    
+
+ 
    
     // $req = $conn->prepare('INSERT INTO t_user (user_game) VALUES (?)');
     // $req->execute([$file]);

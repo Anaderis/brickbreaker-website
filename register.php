@@ -33,10 +33,10 @@
         <!-- Login -->
         <div class="loginConteneur">
             <div class="loginhtml">
-                <!-- <div class="loginbutton ombre backgroundBlanc itemcenter">
+                <div class="loginbutton ombre backgroundBlanc itemcenter">
                     <input id="tab-signin" type="radio" name="tab" class="login"  onclick="hide_register()">
                     <label for="tab-signin" class="tab">Sign In</label>
-                </div> -->
+                </div>
                 <div class="registerbutton ombre backgroundBlanc itemcenter">
                     <input id="tab-signup" type="radio" name="tab" class="register" checked onclick="hide_login()">
                     <label for="tab-signup" class="tab">Sign Up</label>
@@ -102,7 +102,7 @@
                                         </div>
                                         <div class="divloginholder">
                                             <label for="type">You are :</label>
-                                                <select name="type">
+                                                <select id="status" name="type">
                                                     <option value="">...</option>
                                                     <option value="admin">An administrator</option>
                                                     <option value="creator">A creator</option>
@@ -110,8 +110,12 @@
                                                 </select>
                                         </div>
 
+                                        <div id="upload">
+
                                         <label for="file">Upload your game</label>
                                         <input type="file" name="file"> 
+
+                                        </div>
                                     
                                     </div>
                                 </div>
@@ -138,6 +142,8 @@
                 //element.attribute.set(hide = true)
                 //Récupération element avec ID = register_vue
                 //element.attribute.set(hide = false)
+              
+
                 function hide_register() {
                     document.getElementById("register_vue").style.display = "none";
                     document.getElementById("login_vue").style.display = "block";
@@ -153,6 +159,8 @@
                     document.getElementById("tab-signup").click();
                 });
         </script>
+
+        
         <style>
             #register_vue {
                 display: none;
@@ -161,6 +169,7 @@
                 margin-bottom: 5%; 
             }
         </style>
-    </main> 
+    </main>
+    <script src="java.js"></script> 
 </body>
 </html>
