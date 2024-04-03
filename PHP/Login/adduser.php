@@ -25,7 +25,7 @@ if(isset($_POST["submit-register"])){
     $size = $_FILES['file']['size'];
     $error = $_FILES['file']['error'];
 
-    move_uploaded_file($tmpName, './upload/'.$name);
+    move_uploaded_file($tmpName, './Uploads/'.$name);
 
     //Vérification de l'extension du fichier. 
     //Le explode va créer deux éléments : le nom du fichier + l'extension car le séparateur est le point.
@@ -43,22 +43,48 @@ if(isset($_POST["submit-register"])){
     //Filtre des extensions acceptées
 
     if(in_array($extension, $extensions)){
-        move_uploaded_file($tmpName, './upload/'.$name);
+        move_uploaded_file($tmpName, './Uploads/'.$name);
     }
     else{
-        echo "Mauvaise extension";
+        echo "Bad extension file";
     }
 
     // Contrôle de la taille du fichier
 
     if(in_array($extension, $extensions) && $size <= $maxSize){
-        move_uploaded_file($tmpName, './upload/'.$name);
+        move_uploaded_file($tmpName, './Uploads/'.$name);
     }
     else{
-        echo "Mauvaise extension ou taille trop grande";
+        echo "File is too large";
     }
 
+    if(in_array($extension, $extensions) && $size <= $maxSize && $error == 0){
+        move_uploaded_file($tmpName, './Uploads/'.$name);
     }
+    else{
+        echo "Something bad happened";
+    }
+
+    // Vérification d'un nom unique de fichier
+
+    if(in_array($extension, $extensions) && $size <= $maxSize && $error == 0){
+        $uniqueName = uniqid('', true);
+        //uniqid génère quelque chose comme ca : 5f586bf96dcd38.73540086
+        $file = $uniqueName.".".$extension;
+        //$file = 5f586bf96dcd38.73540086.jpg
+        move_uploaded_file($tmpName, './Uploads/'.$file);
+    }
+
+   
+    // $req = $conn->prepare('INSERT INTO t_user (user_game) VALUES (?)');
+    // $req->execute([$file]);
+    // echo "Image enregistrée";
+
+    // Les points d'interrogation permettent d'éviter les injections SQL
+
+    }
+
+    // Gestion des champs du formulaire
 
     $errors = array();
 
@@ -111,11 +137,11 @@ if(isset($_POST["submit-register"])){
         if ($result->num_rows > 0) {
             array_push($errors, "Email already exist." );
         } else {
-            $sql = "INSERT INTO t_user (user_ID, user_email, user_password, user_name, user_type) VALUES (?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO t_user (user_ID, user_email, user_password, user_name, user_type, user_game) VALUES (?, ?, ?, ?, ?, ?)";
             $stmt = mysqli_stmt_init($conn);
             $preparestmt = mysqli_stmt_prepare($stmt, $sql);
             if($preparestmt){
-                mysqli_stmt_bind_param($stmt, "sssss", $randomId, $emailregister, $passwordregister, $Userregister, $usertype);
+                mysqli_stmt_bind_param($stmt, "ssssss", $randomId, $emailregister, $passwordregister, $Userregister, $usertype, $file);
                 mysqli_stmt_execute($stmt);
             }else{
                 array_push($errors, "Something went wrong"); 
