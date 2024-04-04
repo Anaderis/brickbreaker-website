@@ -114,6 +114,9 @@
                                         <label for="file">Upload your game</label>
                                         <input type="file" name="file"> 
 
+                                        <label for="file">Upload your photo</label>
+                                        <input type="file" name="photo"> 
+
                                         </div>
                                     
                                     </div>

@@ -65,12 +65,16 @@ require_once "auth-home.php";
                         </h1>
                     </div>
                     <form action="MonCompte.php" method="post">
-                        <input type="submit" value="Joueurs" name="all_users">
+                        <input type="submit" value="Users" name="all_users">
+                        <input type="submit" value="Games" name="all_games">
                     </form>
                 </div>
     
     <?php
 
+     // ------------------------------     Gérer les joueurs  ------------------------------------------
+     
+     
 
     if (isset ($_POST["all_users"])) {
 
@@ -119,9 +123,9 @@ require_once "auth-home.php";
                                 </div>
 
                             </div>
-                            <button class="read" type="button">Télécharger le jeu</button>
-                            <a href= "<?php echo './Uploads/' . $resultats['user_game'] ?>" download = "<?php echo $resultats['user_game']?>"> clique ici man </a>
-                        
+                            <?php if($resultats['game_photo']){?>
+                            <a href= "<?php echo './Uploads/' . $resultats['game_photo'] ?>" download = "<?php echo $resultats['game_photo']?>">Download profile pic </a>
+                            <?php }?>
 
 
                         </div>
@@ -135,10 +139,84 @@ require_once "auth-home.php";
 
         echo "<p class=count> Résultats : $i</p>";
     }
-
-
-
     ?>
+
+
+     // ------------------------------     Gérer les JEUX  ------------------------------------------
+
+    <?php 
+
+    
+if (isset ($_POST["all_games"])) {
+
+    $i = 0;
+
+    $sqlQuery = 'SELECT * FROM t_user WHERE user_type = "creator" ';
+    $sth = $dbco->query($sqlQuery);
+    $resultat = $sth->fetchAll(PDO::FETCH_ASSOC);
+    $sth->execute();
+
+    //On affiche les infos de la table
+    $keys = array_keys($resultat);
+
+    echo "bonjou";
+
+    foreach ($resultat as $resultats) {
+        $i++;
+        ?>
+       <div class="actu">
+            <article class="article">
+                <div class="articleMount">
+                    <div class="textMount">
+                        <h3>
+                            <?php echo $resultats['game_name'] ?>
+                        </h3>
+
+                        <div class="criteriaMount">
+
+
+                            <div class="difficulty">
+
+                                <img src="./Assets/mounts/picto/star.png" class="picto">
+
+                                    <?php 
+                                        echo 'Creator : ' . $resultats['user_name'];
+                                    ?>
+
+                            </div>
+
+
+                            <div class="mountDetail">
+                                <?php echo $resultats['user_email'] ?>
+                            </div>
+                            <div class="mountDetail">
+                                <?php echo $resultats['game_name'] ?>
+                            </div>
+
+                        </div>
+                        <?php if($resultats['user_game']){?>
+                        <a href= "<?php echo './Uploads/' . $resultats['user_game'] ?>" download = "<?php echo $resultats['user_game']?>"> Download the game </a>
+                        <?php }?>
+
+                        
+
+
+                    </div>
+                    <img src="<?php echo $resultats['game_photo'] ?>" class="photoMount" />
+                </div>
+            </article>
+        </div>
+
+        <?php
+    }
+
+    echo "<p class=count> Résultats : $i</p>";
+}
+?>
+
+
+
+    
             </div>
         </div>
     </main>
