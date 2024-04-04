@@ -4,8 +4,9 @@ session_start();
 
 if (isset ($_SESSION["Loggedin"])) {
     $user = $_SESSION["Loggedin"];
-    $id = $_SESSION["Id"];
 }
+require_once "auth-home.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -35,50 +36,109 @@ if (isset ($_SESSION["Loggedin"])) {
             </a>
         </nav>
     </header>
+
+
+
+
+
+
+
     <main>
-        <div class="profilConteneur">
-            <div class="profilhtml">
-                <div class="profilform ombre">
-                    <div class="profilholder">
-                        <img class="photo" src=<?php echo $_SESSION['type'] ?> alt="user" />
+        <div>
+            <div>
+                <div>
+                    <div>
+                        <img class="photo" alt="user" src=<?php echo $_SESSION['type'] ?>  />
+
+                        
+                        
+                        <!-- /* Connexion en tant qu'administrateur */ -->
                         <h1>
                             <?php
 
                             if ($_SESSION['type'] = "admin") {
-                                echo 'bonjour'. $_SESSION['User'];
-                            }else{
-                                echo "Vous n'êtes pas Admin,". $_SESSION['User'];
-                            }
-                            ?>
+                                    echo 'bonjour '. $_SESSION['User'];
+                                }else{
+                                    echo "Vous n'êtes pas Admin, ". $_SESSION['User'];
+                                }
+                                ?>
                         </h1>
                     </div>
+                    <form action="MonCompte.php" method="post">
+                        <input type="submit" value="Joueurs" name="all_users">
+                    </form>
                 </div>
-                <?php 
-                
-                // if ($id != 666) {
+    
+    <?php
 
-                    // echo '<div class="Monture-conteneur ombre">
-                    // <h1>Monture</h1>
-                    // <div class="text">';
-                    // require_once "./PHP/MonCompte/conn-monture.php";
-                    // echo '</div>
-                // </div>
-                // <div class="Equipement-conteneur ombre">
-                //     <h1>Equipement</h1>
-                //     <div class="text">';
 
-                //     require_once "./PHP/MonCompte/conn-equipement.php";
+    if (isset ($_POST["all_users"])) {
 
-                //     echo '</div></div>';
+        $i = 0;
 
-                // } else {
-                //     echo '<div class="Joueur-conteneur ombre">
-                //     <h1>Joueur</h1>
-                //     <div class="text">';
+        $sqlQuery = 'SELECT * FROM t_user';
+        $sth = $dbco->query($sqlQuery);
+        $resultat = $sth->fetchAll(PDO::FETCH_ASSOC);
+        $sth->execute();
 
-                //         require_once "./PHP/MonCompte/conn-joueur.php";
-                //     echo '</div></div>';
-                // } ?>
+        //On affiche les infos de la table
+        $keys = array_keys($resultat);
+    
+        echo "bonjou";
+
+        foreach ($resultat as $resultats) {
+            $i++;
+            ?>
+           <div class="actu">
+                <article class="article">
+                    <div class="articleMount">
+                        <div class="textMount">
+                            <h3>
+                                <?php echo $resultats['user_name'] ?>
+                            </h3>
+
+                            <div class="criteriaMount">
+
+
+                                <div class="difficulty">
+
+                                    <img src="./Assets/mounts/picto/star.png" class="picto">
+
+                                        <?php 
+                                            echo $resultats['user_type'];
+                                        ?>
+
+                                </div>
+
+
+                                <div class="mountDetail">
+                                    <?php echo $resultats['user_email'] ?>
+                                </div>
+                                <div class="mountDetail">
+                                    <?php echo $resultats['game_name'] ?>
+                                </div>
+
+                            </div>
+                            <button class="read" type="button">Télécharger le jeu</button>
+                            <a href= "<?php echo './Uploads/' . $resultats['user_game'] ?>" download = "<?php echo $resultats['user_game']?>"> clique ici man </a>
+                        
+
+
+                        </div>
+                        <img src="<?php echo $resultats['game_photo'] ?>" class="photoMount" />
+                    </div>
+                </article>
+            </div>
+
+            <?php
+        }
+
+        echo "<p class=count> Résultats : $i</p>";
+    }
+
+
+
+    ?>
             </div>
         </div>
     </main>
