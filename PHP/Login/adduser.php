@@ -90,7 +90,7 @@ if(isset($_POST["submit-register"])){
         $extension = strtolower(end($tabExtension));
         //
         //Tableau des extensions que l'on accepte
-        $extensions = ['jpg', 'png', 'jpeg', 'gif'];
+        $extensions = ['jpg', 'png', 'jpeg', 'gif','webp'];
     
         $maxSize = 400000;
     
@@ -107,9 +107,9 @@ if(isset($_POST["submit-register"])){
         if(in_array($extension, $extensions) && $size <= $maxSize && $error == 0){
             $uniqueName = uniqid('', true);
             //uniqid génère quelque chose comme ca : 5f586bf96dcd38.73540086
-            $file = $uniqueName.".".$extension;
+            $photo = $uniqueName.".".$extension;
             //$file = 5f586bf96dcd38.73540086.jpg
-            move_uploaded_file($tmpName, './Uploads_photos/'.$file);
+            move_uploaded_file($tmpName, './Uploads_photos/'.$photo);
             echo "fichier upload";
         
         }
@@ -185,11 +185,11 @@ if(isset($_POST["submit-register"])){
         if ($result->num_rows > 0) {
             array_push($errors, "Email already exist." );
         } else {
-            $sql = "INSERT INTO t_user (user_ID, user_email, user_password, user_name, user_type, user_game) VALUES (?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO t_user (user_ID, user_email, user_password, user_name, user_type, user_game, game_photo) VALUES (?, ?, ?, ?, ?, ?, ?)";
             $stmt = mysqli_stmt_init($conn);
             $preparestmt = mysqli_stmt_prepare($stmt, $sql);
             if($preparestmt){
-                mysqli_stmt_bind_param($stmt, "ssssss", $randomId, $emailregister, $passwordregister, $Userregister, $usertype, $file);
+                mysqli_stmt_bind_param($stmt, "sssssss", $randomId, $emailregister, $passwordregister, $Userregister, $usertype, $file, $photo);
                 mysqli_stmt_execute($stmt);
             }else{
                 array_push($errors, "Something went wrong"); 

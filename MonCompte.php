@@ -48,7 +48,7 @@ require_once "auth-home.php";
             <div>
                 <div>
                     <div>
-                        <img class="photo" alt="user" src=<?php echo $_SESSION['type'] ?>  />
+                        <img class="photo" alt="user" src="<?php echo './Uploads_photos/'. $_SESSION['Photo'] ?>"  />
 
                         
                         
@@ -72,7 +72,7 @@ require_once "auth-home.php";
     
     <?php
 
-     // ------------------------------     Gérer les joueurs  ------------------------------------------
+     /* ------------------------------     Gérer les joueurs  ------------------------------------------ */
      
      
 
@@ -142,12 +142,14 @@ require_once "auth-home.php";
     ?>
 
 
-     // ------------------------------     Gérer les JEUX  ------------------------------------------
 
     <?php 
 
+    /*------------------------------     Gérer les JEUX  ------------------------------------------*/
+
+
     
-if (isset ($_POST["all_games"])) {
+    if (isset ($_POST["all_games"])) {
 
     $i = 0;
 
