@@ -7,6 +7,13 @@ if (isset ($_SESSION["Loggedin"])) {
 }
 require_once "auth-home.php";
 
+
+/*---- Fonction pour supprimer un joueur -----*/
+// function deleteUser (){
+
+// }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -28,6 +35,10 @@ require_once "auth-home.php";
 
 </head>
 
+<!-- ---------------------------Connexion ADMIN----------------------------------------  -->
+
+<?php if ($_SESSION['type'] = "admin") {?>
+
 <body>
     <header>
         <nav>
@@ -38,29 +49,15 @@ require_once "auth-home.php";
     </header>
 
 
-
-
-
-
-
     <main>
         <div>
             <div>
                 <div>
                     <div>
                         <img class="photo" alt="user" src="<?php echo './Uploads_photos/'. $_SESSION['Photo'] ?>"  />
-
-                        
-                        
-                        <!-- /* Connexion en tant qu'administrateur */ -->
                         <h1>
                             <?php
-
-                            if ($_SESSION['type'] = "admin") {
                                     echo 'bonjour '. $_SESSION['User'];
-                                }else{
-                                    echo "Vous n'êtes pas Admin, ". $_SESSION['User'];
-                                }
                                 ?>
                         </h1>
                     </div>
@@ -78,6 +75,9 @@ require_once "auth-home.php";
 
     if (isset ($_POST["all_users"])) {
 
+        echo "<h2>All the users</h2>";
+
+
         $i = 0;
 
         $sqlQuery = 'SELECT * FROM t_user';
@@ -87,10 +87,14 @@ require_once "auth-home.php";
 
         //On affiche les infos de la table
         $keys = array_keys($resultat);
-    
-        echo "bonjou";
+        
 
-        foreach ($resultat as $resultats) {
+        foreach ($resultat as $keys => $resultats) {
+
+            // $_SESSION['resultats'] = $resultats;
+            
+            echo $keys;
+            
             $i++;
             ?>
            <div class="actu">
@@ -124,8 +128,18 @@ require_once "auth-home.php";
 
                             </div>
                             <?php if($resultats['game_photo']){?>
-                            <a href= "<?php echo './Uploads/' . $resultats['game_photo'] ?>" download = "<?php echo $resultats['game_photo']?>">Download profile pic </a>
+                            <a href= "<?php echo './Uploads_photos/' . $resultats['game_photo'] ?>" download = "<?php echo $resultats['game_photo']?>">Download profile pic </a>
                             <?php }?>
+
+                            <form action="./PHP/MonCompte/supp_user.php" method="post">
+                             <input type="submit" value="Delete user" name="delete_player"> 
+                             <input type="delete" value="<?php echo $resultats['user_ID']?>" name="delete_id" style="display : none">                           
+                            </form>
+
+                            <form action="./PHP/MonCompte/modify_user.php" method="post">
+                             <input type="submit" value="Modify user" name="modify_player"> 
+                             <input type="modify" value="<?php echo $resultats['user_ID']?>" name="modify_id" style="display : none">                           
+                            </form>
 
 
                         </div>
@@ -151,6 +165,8 @@ require_once "auth-home.php";
     
     if (isset ($_POST["all_games"])) {
 
+    echo "<h2>All the games</h2>";
+
     $i = 0;
 
     $sqlQuery = 'SELECT * FROM t_user WHERE user_type = "creator" ';
@@ -161,7 +177,6 @@ require_once "auth-home.php";
     //On affiche les infos de la table
     $keys = array_keys($resultat);
 
-    echo "bonjou";
 
     foreach ($resultat as $resultats) {
         $i++;
@@ -169,6 +184,7 @@ require_once "auth-home.php";
        <div class="actu">
             <article class="article">
                 <div class="articleMount">
+
                     <div class="textMount">
                         <h3>
                             <?php echo $resultats['game_name'] ?>
@@ -218,10 +234,14 @@ require_once "auth-home.php";
 
 
 
+
+
     
             </div>
         </div>
     </main>
 </body>
+
+<?php }?>
 
 </html>

@@ -60,6 +60,7 @@ if(isset($_POST["submit"])){
                 $_SESSION['Photo'] = $row['game_photo'];
                 $_SESSION['User'] = $row['user_name'];
                 $_SESSION['type'] = $row['user_type'];
+                
                 $_SESSION['Loggedin'] = $_SESSION['User'];
                 header("Location: ./MonCompte.php");
 
