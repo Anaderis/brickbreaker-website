@@ -27,29 +27,24 @@
                         </div>
 
                         <div class=background_color>
-                        <div>
-                            <h2>Sign In</h2>
-                        </div>
-                        <form action="login_copy.php" method="POST">
                             <div>
-
-                                    <h6>Username</h6> 
-                                    <input type="text" name="User" placeholder="Enter your UserName">
-                  
-                          
-                                    <h6>Password</h6>
-                                    <input type="password" name="password" placeholder="Enter your PassWord">
-
-                                <div class=cta>
-                                <?php include "./PHP/Login/auth.php"?>
-
-                                    <input type="submit" name="submit"  value="Login">
-                                </div>
+                                <h2>Sign In</h2>
                             </div>
-                        </form> 
+                                <form action="login_copy.php" method="POST">
+                                    <div>
+                                            <h6>Username</h6> 
+                                            <input type="text" name="User" placeholder="Enter your UserName">
+                                            <h6>Password</h6>
+                                            <input type="password" name="password" placeholder="Enter your PassWord">
+                                        
+                                            <div class=cta>
+                                            <?php include "./PHP/Login/auth.php"?>
+
+                                            <input type="submit" name="submit"  value="Login">
+                                            </div>
+                                    </div>
+                                </form> 
                         </div>  
-
-
                     </div>
     </main> 
 </body>
