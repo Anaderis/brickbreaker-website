@@ -47,7 +47,6 @@ if(isset($_POST["submit"])){
     if(count($errors)===0){
 
         require_once "DB_Conn.php";
-
         $sql = "SELECT * FROM t_user
                 WHERE user_name = '$Userlogin' AND user_password='$passwordlogin'";
 
@@ -66,7 +65,9 @@ if(isset($_POST["submit"])){
                 exit();
             } 
         }else {
+            echo '<div class="error">';
             array_push($errors, "UserName or Password doesn't exist.");
+            echo '</div>';
         }
     }
     if(count($errors)>0){

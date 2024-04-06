@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/iconelogin" href="./Assets/icon-Login.png" />
-    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/register.css">
     <title>Sign In</title>
 
     <!-- Footer -->
@@ -20,76 +20,81 @@
 
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="./bdd-mount.php">
-                <img class="logoWOW" src="./Assets/logo.jpg" alt="logoWOW">
-            </a>
-        </nav>
-    </header>
 
     
     <main>
-                    
-                            <h2>Sign Up</h2>
-                      
-                        
-                        <form action="register.php" method="post" enctype="multipart/form-data">
-                            <div>
-                                <div>
+
+            <div class=conteneur>
+                        <div class = logo_conteneur>
+                            <a href="./home.php">
+                                <img class="logo" src="./Assets/icon-Login.png">
+                            </a>    
+                        </div>
+
+
+                        <div class=background_color>
+                            
+                            <form action="register.php" method="post" enctype="multipart/form-data">
+                                <div class=conteneur_again>
                                     <div>
-                                        <div>
-                                            <h6>Email Adress</h6>
-                                            <input type="email" name="email-register" placeholder="Enter your Email Adress">
-                                        </div>
-                                        <div>
-                                            <h6>UserName</h6>
-                                            <input type="text" name="User-register" placeholder="Enter your UserName">
-                                        </div>
+                                        <h2>Sign Up</h2>
                                     </div>
-                                    <div>
-                                        <div>
-                                            <h6>PassWord</h6>
-                                            <input type="password" name="password-register" placeholder="Enter your PassWord">
+                                        
+                                        <div class="padding">
+                                            <h6>Email Adress</h6>
+                                            <input type="email" name="email-register" placeholder="Enter your email adress">
                                         </div>
-                                        <div>
-                                            <h6>Repeat PassWord</h6> 
-                                            <input type="password" name="password-check-register" placeholder="Repeat your PassWord">
-                                        </div>
-                                        <div>
-                                            <label for="type">You are :</label>
-                                                <select id="status" name="type">
-                                                    <option value="">...</option>
-                                                    <option value="creator">A creator</option>
-                                                    <option value="player">A player</option>
-                                                </select>
-                                        </div>
-
-                                        <div>
-
-                                        <label for="file">Upload your game</label>
-                                        <input type="file" name="file"> 
-
-                                        <label for="file">Upload your photo</label>
-                                        <input type="file" name="photo"> 
-
+                                        
+                                        <div class="padding">
+                                            <h6>Username</h6>
+                                            <input type="text" name="User-register" placeholder="Enter your username">
                                         </div>
                                     
-                                    </div>
-                                </div>
-                                <?php include "./PHP/Login/adduser.php"?>
-                                <div>
-                                    <input type="submit" name="submit-register" value="Register">
-                                </div>
-                                
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+                                   
+                                        <div class="padding">
+                                            <h6>Password</h6>
+                                            <input type="password" name="password-register" placeholder="Enter your password">
+                                        </div>
+
+                                        <div class="padding">
+                                            <h6>Repeat Password</h6> 
+                                            <input type="password" name="password-check-register" placeholder="Repeat your password">
+                                        </div>
+
+                                        <div class="padding">
+                                            <label for="type">You are :</label>
+                                                <select id="status" name="type">
+                                                        <option value="...">...</option>
+                                                        <option value="creator">A creator</option>
+                                                        <option value="player">A player</option>
+                                                </select>
+                                        </div>
+                                        
+                                        <div id="upload" style="display: none">
+
+                                        
+
+                                            <label for="file">Upload your game</label>
+                                            <input type="file" name="file"> 
+
+                                            <label for="file">Upload your photo</label>
+                                            <input type="file" name="photo"> 
+
+                                        </div>
     
-    </main>
+                                        <div class ="cta">
+                                            <input type="submit" name="submit-register" value="Register">
+                                        </div>
+
+                                        <div class="error">
+                                            <?php include "./PHP/Login/adduser.php"?>
+                                        </div>
+                                
+                                        </div>
+                                </form> 
+                        </div>  
+                    </div>
+    </main> 
     <script src="java.js"></script> 
 </body>
 </html>
