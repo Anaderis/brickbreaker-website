@@ -8,6 +8,8 @@ body {
     font-weight: 400;
     font-style: normal;
     font-size:large;
+    text-decoration: none;
+
 }
 
 h6 {
@@ -82,5 +84,55 @@ input[type=text], input[type=password], input[type=email]{
 .padding {
     padding :10px;
 }
+
+.already {
+    display:flex;
+    flex-direction: row;
+    justify-content:start;
+    align-items:start;
+    text-decoration: none;
+    margin-top:2px;
+    margin-left:2px;
+    text-decoration: none;
+}
+
+.button {
+    min-width: 8em;
+    height: 50px;
+    background:black;
+    border: 1px solid #000000;
+    transition: 0.5s ease-in-out;
+    font-size:large;
+    color: rgb(255, 255, 255);
+    border-radius: 6px;
+    font-size:medium;
+    text-decoration: none;
+
+}
+
+.button:hover {
+    background: #9d5be6;
+    color: rgb(255, 255, 255);
+    border: 1px solid #9d5be6;
+    border-radius: 6px;
+    transition: 0.5s ease-in-out;
+    text-shadow: none;  
+    text-decoration: none;
+
+}
+
+.button:active {
+    text-decoration: none;
+}
+
+.button:focus {
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
 
 

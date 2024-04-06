@@ -24,6 +24,10 @@
     
     <main>
 
+    <div class="already">
+    <button type="button" class="button"><a href="./login_copy.php">Sign in</a></button>
+    </div>
+
             <div class=conteneur>
                         <div class = logo_conteneur>
                             <a href="./home.php">
@@ -80,6 +84,10 @@
                                             <label for="file">Upload your photo</label>
                                             <input type="file" name="photo"> 
 
+                                            <div>
+                                                <h6>Give your game a name</h6>
+                                                <input type="text" name="gamename" placeholder="Enter your name game">
+                                            </div>
                                         </div>
     
                                         <div class ="cta">

@@ -15,7 +15,7 @@ if(isset($_POST["submit-register"])){
     $passwordregister = $_POST["password-register"];
     $passwordrepeatregister = $_POST["password-check-register"];
     $usertype = $_POST["type"];
-
+    $gamename = $_POST["gamename"];
     //Intégration dans un tableau de tous les éléments du fichier
 
     /*--------------------AJOUT DU FILE DU JEU ---------------------------*/
@@ -185,11 +185,11 @@ if(isset($_POST["submit-register"])){
         if ($result->num_rows > 0) {
             array_push($errors, "Email already exist." );
         } else {
-            $sql = "INSERT INTO t_user (user_ID, user_email, user_password, user_name, user_type, user_game, game_photo) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO t_user (user_ID, user_email, user_password, user_name, user_type, user_game, game_photo, game_name) VALUES (?, ?, ?, ?, ?, ?, ?,?)";
             $stmt = mysqli_stmt_init($conn);
             $preparestmt = mysqli_stmt_prepare($stmt, $sql);
             if($preparestmt){
-                mysqli_stmt_bind_param($stmt, "sssssss", $randomId, $emailregister, $passwordregister, $Userregister, $usertype, $file, $photo);
+                mysqli_stmt_bind_param($stmt, "ssssssss", $randomId, $emailregister, $passwordregister, $Userregister, $usertype, $file, $photo, $gamename);
                 mysqli_stmt_execute($stmt);
             }else{
                 array_push($errors, "Something went wrong"); 

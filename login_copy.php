@@ -18,7 +18,9 @@
 <body>
 
     <main>
-        <!-- Login -->
+        <div class="already">
+            <button type="button" class="button"><a href="./register_copy.php">Register</a></button>
+        </div>
                     <div class=conteneur>
                         <div class = logo_conteneur>
                             <a href="./home.php">
@@ -43,7 +45,7 @@
                                                 <h6>Password</h6>
                                                 <input type="password" name="password" placeholder="Enter your password">
                                             </div>
-                                            
+
                                             <div class=cta>
 
                                             <input type="submit" name="submit"  value="Login">
@@ -56,8 +58,11 @@
                                             </div>
                                     </div>
                                 </form> 
-                        </div>  
+                            
+                        </div> 
+                        
                     </div>
+                     
     </main> 
 </body>
 </html>
