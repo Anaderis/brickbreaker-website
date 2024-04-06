@@ -133,43 +133,66 @@ include "auth-home.php";
 
         $i = 0;
 
-        $sqlQuery = 'SELECT * FROM t_user';
-        $sth = $dbco->query($sqlQuery);
-        $resultat = $sth->fetchAll(PDO::FETCH_ASSOC);
-        $sth->execute();
+        $sqlQuery = 'SELECT * FROM t_user WHERE user_type = "creator" ';
+    $sth = $dbco->query($sqlQuery);
+    $resultat = $sth->fetchAll(PDO::FETCH_ASSOC);
+    $sth->execute();
 
-        //On affiche les infos de la table
-        $keys = array_keys($resultat);
-    
+    //On affiche les infos de la table
+    $keys = array_keys($resultat);
 
 
-        foreach ($resultat as $resultats) {
-            $i++;
-            ?>
-            <div class="actu">
-                <article class="article">
-                    <div class="articleMount">
-                        <div class="textMount">
-                            <h3>
-                                <?php echo "bonjour"; ?>
-                                <!-- $resultats['user_name'] -->
-                            </h3>
-                        <img src="./Uploads/<?php echo $resultats['user_game'] ?>" class="photoMount" />
+    foreach ($resultat as $resultats) {
+        $i++;
+        ?>
+       <div class="actu">
+            <article class="article">
+                <div class="articleMount">
+
+                    <div class="textMount">
+                        <h3>
+                            <?php echo $resultats['game_name'] ?>
+                        </h3>
+
+                        <div class="criteriaMount">
+
+
+                            <div class="difficulty">
+
+                                <img src="./Assets/mounts/picto/star.png" class="picto">
+
+                                    <?php 
+                                        echo 'Creator : ' . $resultats['user_name'];
+                                    ?>
+
+                            </div>
+
+
+                            <div class="mountDetail">
+                                <?php echo $resultats['user_email'] ?>
+                            </div>
+                            <div class="mountDetail">
+                                <?php echo $resultats['game_name'] ?>
+                            </div>
+
+                        </div>
+                        <?php if($resultats['user_game']){?>
+                        <a href= "<?php echo './Uploads/' . $resultats['user_game'] ?>" download = "<?php echo $resultats['user_game']?>"> Download the game </a>
+                        <?php }?>
+
+                        
+
+
                     </div>
-                </article>
-            </div>
-            </section>
+                    <img class="photoMount" alt="user" src="<?php echo './Uploads_photos/'. $resultats['game_photo'] ?>"  />
+                </div>
+            </article>
+        </div>
 
+        <?php
+    }
 
-
-
-
-
-
-            <?php
-        }
-
-        echo "<p class=count> Résultats : $i</p>";
+    echo "<p class=count> Résultats : $i</p>";
     }
 
 

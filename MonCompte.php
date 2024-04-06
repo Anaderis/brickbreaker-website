@@ -23,7 +23,7 @@ require_once "auth-home.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/iconelogin" href="./Assets/photodeprofil/compte.png" />
-    <link rel="stylesheet" href="./css/moncompte.css">
+    <link rel="stylesheet" href="./css/style-equipment.css">
     <title>Mon Compte</title>
 
     <!-- Footer -->
@@ -136,14 +136,15 @@ require_once "auth-home.php";
                              <input type="delete" value="<?php echo $resultats['user_ID']?>" name="delete_id" style="display : none">                           
                             </form>
 
-                            <form action="./PHP/MonCompte/modify_user.php" method="post">
+                            <form action="./PHP/MonCompte/modify_user.php" method="post" class="read">
                              <input type="submit" value="Modify user" name="modify_player"> 
                              <input type="modify" value="<?php echo $resultats['user_ID']?>" name="modify_id" style="display : none">                           
                             </form>
 
 
                         </div>
-                        <img src="<?php echo $resultats['game_photo'] ?>" class="photoMount" />
+                        <img class="photoMount" alt="user" src="<?php echo './Uploads_photos/'. $resultats['game_photo'] ?>"  />
+
                     </div>
                 </article>
             </div>
@@ -182,48 +183,56 @@ require_once "auth-home.php";
         $i++;
         ?>
        <div class="actu">
-            <article class="article">
-                <div class="articleMount">
+                <article class="article">
+                    <div class="articleMount">
+                        <div class="textMount">
+                            <h3>
+                                <?php echo $resultats['user_name'] ?>
+                            </h3>
 
-                    <div class="textMount">
-                        <h3>
-                            <?php echo $resultats['game_name'] ?>
-                        </h3>
-
-                        <div class="criteriaMount">
+                            <div class="criteriaMount">
 
 
-                            <div class="difficulty">
+                                <div class="difficulty">
 
-                                <img src="./Assets/mounts/picto/star.png" class="picto">
+                                    <img src="./Assets/mounts/picto/star.png" class="picto">
 
-                                    <?php 
-                                        echo 'Creator : ' . $resultats['user_name'];
-                                    ?>
+                                        <?php 
+                                            echo $resultats['user_type'];
+                                        ?>
+
+                                </div>
+
+
+                                <div class="mountDetail">
+                                    <?php echo $resultats['user_email'] ?>
+                                </div>
+                                <div class="mountDetail">
+                                    <?php echo $resultats['game_name'] ?>
+                                </div>
 
                             </div>
+                            <?php if($resultats['game_photo']){?>
+                            <a href= "<?php echo './Uploads_photos/' . $resultats['game_photo'] ?>" download = "<?php echo $resultats['game_photo']?>">Download profile pic </a>
+                            <?php }?>
 
+                            <form action="./PHP/MonCompte/supp_user.php" method="post">
+                             <input type="submit" value="Delete user" name="delete_player"> 
+                             <input type="delete" value="<?php echo $resultats['user_ID']?>" name="delete_id" style="display : none">                           
+                            </form>
 
-                            <div class="mountDetail">
-                                <?php echo $resultats['user_email'] ?>
-                            </div>
-                            <div class="mountDetail">
-                                <?php echo $resultats['game_name'] ?>
-                            </div>
+                            <form action="./PHP/MonCompte/modify_user.php" method="post" class="read">
+                             <input type="submit" value="Modify user" name="modify_player"> 
+                             <input type="modify" value="<?php echo $resultats['user_ID']?>" name="modify_id" style="display : none">                           
+                            </form>
+
 
                         </div>
-                        <?php if($resultats['user_game']){?>
-                        <a href= "<?php echo './Uploads/' . $resultats['user_game'] ?>" download = "<?php echo $resultats['user_game']?>"> Download the game </a>
-                        <?php }?>
-
-                        
-
+                        <img class="photoMount" alt="user" src="<?php echo './Uploads_photos/'. $resultats['game_photo'] ?>"  />
 
                     </div>
-                    <img src="<?php echo $resultats['game_photo'] ?>" class="photoMount" />
-                </div>
-            </article>
-        </div>
+                </article>
+            </div>
 
         <?php
     }

@@ -38,7 +38,7 @@
 
                         <div class=background_color>
                             
-                            <form action="register.php" method="post" enctype="multipart/form-data">
+                            <form action="register_copy.php" method="post" enctype="multipart/form-data">
                                 <div class=conteneur_again>
                                     <div>
                                         <h2>Sign Up</h2>

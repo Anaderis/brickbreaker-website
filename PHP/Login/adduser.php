@@ -57,7 +57,7 @@ if(isset($_POST["submit-register"])){
         $file = $uniqueName.".".$extension;
         //$file = 5f586bf96dcd38.73540086.jpg
         move_uploaded_file($tmpName, './Uploads/'.$file);
-        echo "fichier upload";
+        echo "File uploaded ";
     
     }
     else if ($size >= $maxSize){
@@ -110,7 +110,7 @@ if(isset($_POST["submit-register"])){
             $photo = $uniqueName.".".$extension;
             //$file = 5f586bf96dcd38.73540086.jpg
             move_uploaded_file($tmpName, './Uploads_photos/'.$photo);
-            echo "fichier upload";
+            echo "Photo uploaded";
         
         }
         else if ($size >= $maxSize){
