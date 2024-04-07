@@ -20,8 +20,8 @@ $_SESSION['modify_ID'] = isset($_POST['modify_id']) ? $_POST['modify_id'] : "";
 
 ?>
 
-<!-- <input type="email" name="emailregister" placeholder="New email adress"> -->
-<!-- <input type="password" name="passwordregister" placeholder="New Password">
+<input type="email" name="emailregister" placeholder="New email adress">
+<input type="password" name="passwordregister" placeholder="New Password">
 <label for="type">Change status :</label>
 
             <select id="status" name="type">
@@ -36,7 +36,7 @@ $_SESSION['modify_ID'] = isset($_POST['modify_id']) ? $_POST['modify_id'] : "";
         <input type="file" name="file"> 
 
 <label for="file">Upload your photo</label>
-        <input type="file" name="photo">  -->
+        <input type="file" name="photo"> 
         <form action="modify_user.php" method="post">
         <input type="text" name="Userregister" placeholder="New username">
 

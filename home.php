@@ -39,7 +39,7 @@ include "auth-home.php";
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet" />
 
 
-    <link rel="stylesheet" href="./css/style-equipment.css" />
+    <link rel="stylesheet" href="./css/style.css" />
 
 
     <!-- <style>

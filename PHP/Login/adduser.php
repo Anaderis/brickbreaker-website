@@ -20,7 +20,7 @@ if(isset($_POST["submit-register"])){
 
     /*--------------------AJOUT DU FILE DU JEU ---------------------------*/
 
-    if(isset($_FILES['file'])){
+    if(isset($_FILES['file']) && $usertype=="creator"){
 
     $tmpName = $_FILES['file']['tmp_name'];
     $name = $_FILES['file']['name'];
@@ -73,7 +73,7 @@ if(isset($_POST["submit-register"])){
 
     /*--------------------AJOUT DE LA PHOTO ---------------------------*/
 
-    if(isset($_FILES['photo'])){
+    if(isset($_FILES['photo']) && $usertype=="creator"){
 
         $tmpName = $_FILES['photo']['tmp_name'];
         $name = $_FILES['photo']['name'];
