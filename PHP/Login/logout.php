@@ -17,6 +17,6 @@ if (ini_get("session.use_cookies")) {
 session_destroy();
 
 // Redirect to a login page or any other page as needed
-header("Location: ../../wow-armory.php"); // Redirect to login.php
+header("Location: ../../home.php"); // Redirect to login.php
 exit();
 ?>

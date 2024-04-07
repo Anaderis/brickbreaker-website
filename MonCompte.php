@@ -23,13 +23,14 @@ require_once "auth-home.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/iconelogin" href="./Assets/photodeprofil/compte.png" />
-    <link rel="stylesheet" href="./css/style-equipment.css">
+    <link rel="stylesheet" href="./css/style-account.css">
     <title>Mon Compte</title>
 
-    <!-- Footer -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" />
+    <!-- Police -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Reddit+Mono:wght@200..900&display=swap" rel="stylesheet">
 
 
 
@@ -40,32 +41,40 @@ require_once "auth-home.php";
 <?php if ($_SESSION['type'] = "admin") {?>
 
 <body>
-    <header>
-        <nav>
-            <a href="./wow-armory.php">
-                <img class="logoWOW" src="./Assets/logo.png" alt="logoWOW">
-            </a>
-        </nav>
-    </header>
-
 
     <main>
-        <div>
-            <div>
-                <div>
-                    <div>
+                    
+                        <?php 
+                        if(isset($_SESSION['Loggedin'])){
+                            echo '<a href="./PHP/Login/logout.php"><button type="button" class="button">Logout</button></a>';
+                        } else {
+                            echo '<a href="./login.php"><button class="button" type="button">Login</button></a>';
+                        }
+                        ?>
+                        <div class=conteneur>
+                            <div class = logo_conteneur>
+                                <a href="./home.php">
+                                    <img class="logo" src="./Assets/icon-Login.png">
+                                </a>    
+                            </div>
+                
+                    <div class = logo_conteneur>
                         <img class="photo" alt="user" src="<?php echo './Uploads_photos/'. $_SESSION['Photo'] ?>"  />
+                        
                         <h1>
                             <?php
-                                    echo 'bonjour '. $_SESSION['User'];
+                                    echo 'Bienvenue '. $_SESSION['User'];
                                 ?>
                         </h1>
+                        
                     </div>
                     <form action="MonCompte.php" method="post">
-                        <input type="submit" value="Users" name="all_users">
-                        <input type="submit" value="Games" name="all_games">
+                        <input type="submit" value="Users" name="all_users" class="button">
+                        <input type="submit" value="Games" name="all_games" class="button">
                     </form>
                 </div>
+    
+                </main> 
     
     <?php
 
@@ -75,7 +84,7 @@ require_once "auth-home.php";
 
     if (isset ($_POST["all_users"])) {
 
-        echo "<h2>All the users</h2>";
+        echo '<h2 class="title">All the users</h2>';
 
 
         $i = 0;
@@ -110,7 +119,7 @@ require_once "auth-home.php";
 
                                 <div class="difficulty">
 
-                                    <img src="./Assets//starr.png" class="picto">
+                                    <img src="./Assets/star.png" class="picto">
 
                                         <?php 
                                             echo $resultats['user_type'];
@@ -195,7 +204,7 @@ require_once "auth-home.php";
 
                                 <div class="difficulty">
 
-                                    <img src="./Assets//starr.png" class="picto">
+                                    <img src="./Assets/star.png" class="picto">
 
                                         <?php 
                                             echo $resultats['user_name'];
@@ -204,35 +213,46 @@ require_once "auth-home.php";
                                 </div>
 
 
-                                <!-- <div class="mountDetail">
+                                <div class="mountDetail">
                                     <?php echo $resultats['user_email'] ?>
-                                </div> -->
+                                </div>
                                 <div class="mountDetail">
                                     <?php echo $resultats['game_name'] ?>
                                 </div>
+                                
+           
+                                <div>
+                                    <form action="<?php echo './Uploads/' . $resultats['user_game']?>" method="post">
+                                        
+                                        <?php if($resultats['user_game']){?>
+                                            <input type="submit" value="Download game file" name=""> 
+                                        <?php }?>
+                                    </form>
 
+                                </div>
+                            
+                                <div>
+                                    <form action="./MonCompte.php" method="post">
+                                        <input type="submit" value="Delete game" name="delete_game"> 
+                                            <?php if(isset($_POST["delete_game"])){
+                                                unlink('./Uploads/' . $resultats['user_game']);
+                                            } ?>
+                                    </form>
+                                </div>
+                                
+                                <div>
+                                    <form action="./PHP/MonCompte/modify_game.php" method="post" class="read" enctype="multipart/form-data">
+                                        <input type="submit" value="Modify game" name="modify_game"> 
+                                        <input type="modify" value="<?php echo $resultats['user_ID']?>" name="modify_id" style="display : none">                           
+                                    </form>
+                                </div>
                             </div>
-                            <?php if($resultats['user_game']){?>
-                            <a href= "<?php echo './Uploads/' . $resultats['user_game'] ?>" download = "<?php echo $resultats['user_game']?>">Download game file </a>
-                            <?php }?>
 
-                            <form action="./MonCompte.php" method="post">
-                             <input type="submit" value="Delete game" name="delete_game"> 
-                                <?php unlink('./Uploads/' . $resultats['user_game']); ?>
-                            </form>
-
-                            <form action="./PHP/MonCompte/modify_game.php" method="post" class="read" enctype="multipart/form-data">
-                             <input type="submit" value="Modify game" name="modify_game"> 
-                             <input type="modify" value="<?php echo $resultats['user_ID']?>" name="modify_id" style="display : none">                           
-                            </form>
-
-
-                        </div>
-                        <img class="photoMount" alt="user" src="<?php echo './Uploads_photos/'. $resultats['game_photo'] ?>"  />
-
-                    </div>
+                                <img class="photoMount" alt="user" src="<?php echo './Uploads_photos/'. $resultats['game_photo'] ?>"  />
+                        </div>                    
+                    </div>   
                 </article>
-            </div>
+        </div>
 
         <?php
     }
@@ -248,9 +268,9 @@ require_once "auth-home.php";
     
             </div>
         </div>
-    </main>
-</body>
+    
 
+    </body>
 <?php }?>
 
 </html>

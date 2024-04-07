@@ -77,7 +77,7 @@ include "auth-home.php";
                             if(isset($_SESSION['Loggedin'])){
                                 echo '<a href="./MonCompte.php">' .$userpseudo.'</a>';
                             }else{
-                                echo '<a href="./login.php">My account</button></a>';
+                                echo '<a href="./login_copy.php">My account</button></a>';
                             }
                         ?>
                     </li>
@@ -86,7 +86,7 @@ include "auth-home.php";
                         if(isset($_SESSION['Loggedin'])){
                             echo '<a href="./PHP/Login/logout.php"><button class="login" type="button">Logout</button></a>';
                         } else {
-                            echo '<a href="./login.php"><button class="login2" type="button">Login</button></a>';
+                            echo '<a href="./login_copy.php"><button class="login2" type="button">Login</button></a>';
                         }
                         ?>
                     </li>

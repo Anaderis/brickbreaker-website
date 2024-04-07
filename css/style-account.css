@@ -1,0 +1,187 @@
+.conteneur {
+    
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size:large;
+  }
+  
+  .title {
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size:2em;
+  }
+  
+  body {
+    
+    margin : 0;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size:large;
+  }
+
+  main {
+    background-image: url(../Assets/font_register.jpg);
+    background-size: cover;
+  }
+
+  
+  
+  
+  .logo {
+    width:50px;
+  
+  }
+  
+  .photo {
+    width : 300px;
+  }
+  
+  .conteneur, .logo_conteneur {
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .login {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  /* input[type=submit] {
+    min-width: 10em;
+    height: 50px;
+    cursor: pointer;
+    background:black;
+    border: 1px solid #000000;
+    transition: 0.5s ease-in-out;
+    font-size:large;
+    color: rgb(255, 255, 255);
+    border-radius: 6px;
+    margin-top : 70px;
+    margin-bottom: 30px;
+  } */
+
+  .button {
+    min-width: 10em;
+    height: 50px;
+    cursor: pointer;
+    min-width: 8em;
+    height: 50px;
+    background:black;
+    border: 1px solid #000000;
+    transition: 0.5s ease-in-out;
+    font-size:large;
+    color: rgb(255, 255, 255);
+    border-radius: 6px;
+    font-size:large;
+    text-decoration: none;
+    margin : 10px;
+  
+    margin-bottom: 30px;
+
+}
+
+.button:hover {
+    background: #9d5be6;
+    color: rgb(255, 255, 255);
+    border: 1px solid #9d5be6;
+    border-radius: 6px;
+    transition: 0.5s ease-in-out;
+    text-shadow: none;  
+}
+  
+  /* Affichage des résultats de jeux */
+  
+  .article {
+    width:80%;
+    margin:auto;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  /* padding et margin autour du bloc */
+  
+  .article div {
+    
+    margin-bottom:10px;
+    flex-wrap: wrap;
+  
+    /* padding:1%; */
+  
+    
+  }
+  
+  /* format de l'image */
+  
+  .photoMount {
+    max-width:15%;
+    height:auto;
+    margin-left:10px;
+    flex-wrap: wrap;
+  
+  }
+  
+  
+  .articleMount {
+    display:flex;
+    flex-direction: row;
+    background-color: rgba(201, 190, 195, 0.18);
+    margin-top:1%;
+    align-items: center;
+    flex-wrap: wrap;
+    flex:1;
+    
+    
+  }
+  .articleMount, img{
+    flex:3;
+    
+    
+  }
+  .difficulty {
+  display:flex;
+  align-items: center;
+  flex-wrap: wrap;
+  
+  }
+  .picto {
+  width:30px;
+  padding-right: 10px;
+  
+  } 
+  
+  /* proportion du texte dans la div */
+  
+  .textMount {
+    flex:2;  
+  }
+  
+  .textMount h3 {
+  padding:2%;
+  
+  }
+  
+  .criteriaMount {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  
+  /* flex-wrap: wrap; */
+  
+  }
+  
+  
