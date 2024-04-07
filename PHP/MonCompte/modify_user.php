@@ -57,7 +57,6 @@ $_SESSION['modify_ID'] = isset($_POST['modify_id']) ? $_POST['modify_id'] : "";
 
 if(isset($_POST["submit-register"])){
 
-    echo "bonjour monsieur";
     $emailregister = $_POST["emailregister"];
     $haveemail = false;
     $Userregister = $_POST["Userregister"];
@@ -126,6 +125,11 @@ if(isset($_POST["submit-register"])){
         echo "Bad file extension";
     }
 
+    if ($_FILES['file']['size'] != 0) {
+        
+        $isfile=true;
+    }
+
 
 }
 
@@ -181,6 +185,13 @@ if(isset($_POST["submit-register"])){
             echo "Bad photo extension";
         }
 
+        if ($_FILES['photo']['size'] != 0) {
+        
+            $isphoto=true;
+        }
+
+        
+
     }
 
     // Gestion des champs du formulaire
@@ -194,14 +205,17 @@ if(isset($_POST["submit-register"])){
         array_push($errors, "Password must be at least 8 characters long"); 
     }
 
-    if ($_FILES['file']['size'] > 0) {
+    
+    $sqlQuery = 'UPDATE t_user';
+
+    if ($isfile ==true) {
         $set[] = ' user_game = ' . ':file';
-        $isfile=true;
     }
-    if ($_FILES['photo']['size'] > 0) {
+
+    if ($isphoto ==true) {
         $set[] = ' game_photo = ' . ':photo';
-        $isphoto=true;
     }
+
 
     if (!empty ($_POST['Userregister'])) // si une region à été choisie
         {
@@ -233,16 +247,14 @@ if(isset($_POST["submit-register"])){
 
 
         if (isset ($set)) {
-            $sqlQuery .= " SET " . implode(', ', $set);
+            $sqlQuery .= " SET " . implode(',', $set) . " WHERE user_ID = :id ;";
         }
 
 // $id=$resultats['user_ID'];
 // echo $id;
 
-    $sqlQuery = 'UPDATE t_user SET user_name = :Userregister, user_type = :type, user_password = :passwordregister,
-    user_game = :file, user_email = :emailregister, game_name = :gamename, game_photo = :photo
-    WHERE user_ID = :id';
     $sth = $dbco->prepare($sqlQuery);
+
     if ($haveuser){
         $sth->bindParam(':Userregister', $Userregister, PDO::PARAM_STR);
 
@@ -266,13 +278,18 @@ if(isset($_POST["submit-register"])){
         $sth->bindParam(':photo', $photo, PDO::PARAM_STR);
     }
     $sth->bindParam(':id', $_SESSION['modify_ID'], PDO::PARAM_STR);
+    echo $sqlQuery;
     $sth->execute();
+
+    if (!$sth->execute()) {
+        print_r($sth->errorInfo()); // Afficher les détails de l'erreur PDO
+    }
 
     echo $_SESSION['modify_ID'];
 
 
-    header('Location:../../MonCompte.php');
-    exit;
+    // header('Location:../../MonCompte.php');
+    // exit;
 }
 
 
