@@ -216,11 +216,9 @@ require_once "auth-home.php";
                             <a href= "<?php echo './Uploads/' . $resultats['user_game'] ?>" download = "<?php echo $resultats['user_game']?>">Download game file </a>
                             <?php }?>
 
-                            <form action="./PHP/MonCompte/supp_game.php" method="post">
+                            <form action="./MonCompte.php" method="post">
                              <input type="submit" value="Delete game" name="delete_game"> 
-                             <input type="delete" value="<?php echo $resultats['user_ID']?>" name="delete_id" style="display : none">    
-                             <input type="delete" value="<?php echo $resultats['game_name']?>" name="delete_gamename" style="display : none">                           
-                       
+                                <?php unlink('./Uploads/' . $resultats['user_game']); ?>
                             </form>
 
                             <form action="./PHP/MonCompte/modify_game.php" method="post" class="read" enctype="multipart/form-data">

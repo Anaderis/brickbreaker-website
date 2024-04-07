@@ -50,8 +50,9 @@ $_SESSION['modify_ID'] = isset($_POST['modify_id']) ? $_POST['modify_id'] : "";
 if(isset($_POST["submit-register"])){
 
     $gamename = $_POST["gamename"];
-    $isphoto = true;
-    $isfile = true;
+    $havegamename = false;
+    $isphoto = false;
+    $isfile = false;
 
     //Intégration dans un tableau de tous les éléments du fichier
 
@@ -82,14 +83,9 @@ if(isset($_POST["submit-register"])){
     $array = in_array($extension, $extensions);
 
 
-    // echo $extension;
-    // echo gettype($extensions[0]);
-    // echo $array;
-
 
     //Vérification d'un nom unique de fichier
 
-        
         
         
         if (in_array($extension, $extensions) && $size <= $maxSize && $error == 0){ 
@@ -112,6 +108,10 @@ if(isset($_POST["submit-register"])){
             echo "Bad file extension";
         }
 
+        if ($_FILES['file']['size'] != 0) {
+        
+            $isfile=true;
+        }
         
 
 
@@ -178,64 +178,58 @@ if(isset($_POST["submit-register"])){
             echo "Bad photo extension";
         }
 
+        if ($_FILES['photo']['size'] != 0) {
         
+            $isphoto=true;
+        }
 
 
 
     }
 
-        if ($_FILES['file']['size'] == 0) {
-            $isfile=false;
-        }
-        if ($_FILES['photo']['size'] == 0) {
-            $isphoto=false;
+    $sqlQuery = 'UPDATE t_user';
+
+    if ($isfile ==true) {
+        $set[] = ' user_game = ' . ':file';
+    }
+
+    if ($isphoto ==true) {
+        $set[] = ' game_photo = ' . ':photo';
+    }
+
+    if (!empty ($_POST['gamename'])) // si une region à été choisie
+        {
+            $set[] = ' game_name = ' . ':gamename';
+            $havegamename = true;
         }
 
-    
-    if ($isfile == true) {
-    $sqlQuery = 'UPDATE t_user SET 
-    user_game = :file, game_name = :gamename
-    WHERE user_ID = :id';
+    if (isset ($set)) {
+            $sqlQuery .= " SET " . implode(',', $set) . " WHERE user_ID = :id ;";
+        }
+
     $sth = $dbco->prepare($sqlQuery);
-    
-    $sth->bindParam(':file', $file, PDO::PARAM_STR);
-    $sth->bindParam(':gamename', $gamename, PDO::PARAM_STR);
-    $sth->bindParam(':id', $_SESSION['modify_ID'], PDO::PARAM_STR);
-    $sth->execute();
 
-    echo $_SESSION['modify_ID'];
+    if ($havegamename){
+            $sth->bindParam(':gamename', $gamename, PDO::PARAM_STR);
+    
     }
 
-    if ($isphoto == true) {
-
-        $sqlQuery = 'UPDATE t_user SET 
-        game_photo = :photo, game_name = :gamename
-        WHERE user_ID = :id';
-        $sth = $dbco->prepare($sqlQuery);
-        $sth->bindParam(':photo', $photo, PDO::PARAM_STR);
-        $sth->bindParam(':gamename', $gamename, PDO::PARAM_STR);
-        $sth->bindParam(':id', $_SESSION['modify_ID'], PDO::PARAM_STR);
-        $sth->execute();
-    
-        echo $_SESSION['modify_ID'];
-
-    }
-
-    if ($isphoto == true && $isfile == true) {
-
-        $sqlQuery = 'UPDATE t_user SET 
-        user_game = :file, game_photo = :photo, game_name = :gamename
-        WHERE user_ID = :id';
-        $sth = $dbco->prepare($sqlQuery);
-        $sth->bindParam(':photo', $photo, PDO::PARAM_STR);
+    if ($isfile) {
         $sth->bindParam(':file', $file, PDO::PARAM_STR);
-        $sth->bindParam(':gamename', $gamename, PDO::PARAM_STR);
-        $sth->bindParam(':id', $_SESSION['modify_ID'], PDO::PARAM_STR);
-        $sth->execute();
+    }
+
+    if ($isphoto){
+        $sth->bindParam(':photo', $photo, PDO::PARAM_STR);
+    }
+    
+    $sth->bindParam(':id', $_SESSION['modify_ID'], PDO::PARAM_STR);
+    echo $sqlQuery;
+    $sth->execute();
+   
     
         echo $_SESSION['modify_ID'];
 
-    }
+    
 
 
     // header('Location:../../MonCompte.php');

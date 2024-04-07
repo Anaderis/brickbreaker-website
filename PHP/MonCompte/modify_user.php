@@ -20,6 +20,11 @@ $_SESSION['modify_ID'] = isset($_POST['modify_id']) ? $_POST['modify_id'] : "";
 
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+
 <form action="modify_user.php" method="post">
 
         <input type="text" name="Userregister" placeholder="New username">
@@ -298,3 +303,6 @@ if(isset($_POST["submit-register"])){
 
 
 ?>
+
+</body>
+</html>
