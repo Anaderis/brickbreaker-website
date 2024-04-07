@@ -136,7 +136,7 @@ require_once "auth-home.php";
                              <input type="delete" value="<?php echo $resultats['user_ID']?>" name="delete_id" style="display : none">                           
                             </form>
 
-                            <form action="./PHP/MonCompte/modify_user.php" method="post" class="read">
+                            <form action="./PHP/MonCompte/modify_user.php" method="post" class="read" method="post" enctype="multipart/form-data">
                              <input type="submit" value="Modify user" name="modify_player"> 
                              <input type="modify" value="<?php echo $resultats['user_ID']?>" name="modify_id" style="display : none">                           
                             </form>
@@ -204,16 +204,16 @@ require_once "auth-home.php";
                                 </div>
 
 
-                                <div class="mountDetail">
+                                <!-- <div class="mountDetail">
                                     <?php echo $resultats['user_email'] ?>
-                                </div>
+                                </div> -->
                                 <div class="mountDetail">
                                     <?php echo $resultats['game_name'] ?>
                                 </div>
 
                             </div>
-                            <?php if($resultats['game_photo']){?>
-                            <a href= "<?php echo './Uploads_photos/' . $resultats['game_photo'] ?>" download = "<?php echo $resultats['game_photo']?>">Download profile pic </a>
+                            <?php if($resultats['user_game']){?>
+                            <a href= "<?php echo './Uploads/' . $resultats['user_game'] ?>" download = "<?php echo $resultats['user_game']?>">Download game file </a>
                             <?php }?>
 
                             <form action="./PHP/MonCompte/supp_user.php" method="post">
@@ -221,8 +221,8 @@ require_once "auth-home.php";
                              <input type="delete" value="<?php echo $resultats['user_ID']?>" name="delete_id" style="display : none">                           
                             </form>
 
-                            <form action="./PHP/MonCompte/modify_user.php" method="post" class="read">
-                             <input type="submit" value="Modify user" name="modify_player"> 
+                            <form action="./PHP/MonCompte/modify_game.php" method="post" class="read" enctype="multipart/form-data">
+                             <input type="submit" value="Modify game" name="modify_game"> 
                              <input type="modify" value="<?php echo $resultats['user_ID']?>" name="modify_id" style="display : none">                           
                             </form>
 
