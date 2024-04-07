@@ -59,10 +59,17 @@ if(isset($_POST["submit-register"])){
 
     echo "bonjour monsieur";
     $emailregister = $_POST["emailregister"];
+    $haveemail = false;
     $Userregister = $_POST["Userregister"];
+    $haveuser = false ;
     $passwordregister = $_POST["passwordregister"];
+    $havepassword = false ;
     $usertype = $_POST["type"];
+    $havetype = false ;
     $gamename = $_POST["gamename"];
+    $havegamename = false ;
+    $isfile = false ;
+    $isphoto = false ;
 
 
     //Intégration dans un tableau de tous les éléments du fichier
@@ -187,6 +194,48 @@ if(isset($_POST["submit-register"])){
         array_push($errors, "Password must be at least 8 characters long"); 
     }
 
+    if ($_FILES['file']['size'] > 0) {
+        $set[] = ' user_game = ' . ':file';
+        $isfile=true;
+    }
+    if ($_FILES['photo']['size'] > 0) {
+        $set[] = ' game_photo = ' . ':photo';
+        $isphoto=true;
+    }
+
+    if (!empty ($_POST['Userregister'])) // si une region à été choisie
+        {
+            $set[] = ' user_name = ' . ':Userregister';
+            $haveuser = true;
+        }
+        if (!empty ($_POST['emailregister'])) // si une region à été choisie
+        {
+            $set[] = ' user_email = ' . ':emailregister';
+            $haveemail = true;
+        }
+        if (!empty ($_POST['passwordregister'])) // si une region à été choisie
+        {
+            $set[] = ' user_password = ' . ':passwordregister';
+            $havepassword = true;
+        }
+        if (!empty ($_POST['type'])) // si une region à été choisie
+        {
+            $set[] = ' user_type = ' . ':type';
+            $havetype = true;
+        }
+        if (!empty ($_POST['gamename'])) // si une region à été choisie
+        {
+            $set[] = ' game_name = ' . ':gamename';
+            $havegamename = true;
+        }
+
+
+
+
+        if (isset ($set)) {
+            $sqlQuery .= " SET " . implode(', ', $set);
+        }
+
 // $id=$resultats['user_ID'];
 // echo $id;
 
@@ -194,13 +243,28 @@ if(isset($_POST["submit-register"])){
     user_game = :file, user_email = :emailregister, game_name = :gamename, game_photo = :photo
     WHERE user_ID = :id';
     $sth = $dbco->prepare($sqlQuery);
-    $sth->bindParam(':Userregister', $Userregister, PDO::PARAM_STR);
-    $sth->bindParam(':type', $usertype, PDO::PARAM_STR);
-    $sth->bindParam(':passwordregister', $passwordregister, PDO::PARAM_STR);
-    $sth->bindParam(':file', $file, PDO::PARAM_STR);
-    $sth->bindParam(':emailregister',  $emailregister, PDO::PARAM_STR);
-    $sth->bindParam(':gamename', $gamename, PDO::PARAM_STR);
-    $sth->bindParam(':photo', $photo, PDO::PARAM_STR);
+    if ($haveuser){
+        $sth->bindParam(':Userregister', $Userregister, PDO::PARAM_STR);
+
+    }
+    if ($havetype){
+        $sth->bindParam(':type', $usertype, PDO::PARAM_STR);
+    }
+    if ($havepassword) {
+        $sth->bindParam(':passwordregister', $passwordregister, PDO::PARAM_STR);
+    }
+    if ($isfile) {
+        $sth->bindParam(':file', $file, PDO::PARAM_STR);
+    }
+    if ($haveemail){
+        $sth->bindParam(':emailregister',  $emailregister, PDO::PARAM_STR);
+    }
+    if ($havegamename) {
+        $sth->bindParam(':gamename', $gamename, PDO::PARAM_STR);
+    }
+    if ($isphoto){
+        $sth->bindParam(':photo', $photo, PDO::PARAM_STR);
+    }
     $sth->bindParam(':id', $_SESSION['modify_ID'], PDO::PARAM_STR);
     $sth->execute();
 

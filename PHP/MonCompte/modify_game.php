@@ -197,6 +197,7 @@ if(isset($_POST["submit-register"])){
     user_game = :file, game_name = :gamename
     WHERE user_ID = :id';
     $sth = $dbco->prepare($sqlQuery);
+    
     $sth->bindParam(':file', $file, PDO::PARAM_STR);
     $sth->bindParam(':gamename', $gamename, PDO::PARAM_STR);
     $sth->bindParam(':id', $_SESSION['modify_ID'], PDO::PARAM_STR);
