@@ -110,7 +110,7 @@ require_once "auth-home.php";
 
                                 <div class="difficulty">
 
-                                    <img src="./Assets/mounts/picto/star.png" class="picto">
+                                    <img src="./Assets//starr.png" class="picto">
 
                                         <?php 
                                             echo $resultats['user_type'];
@@ -187,7 +187,7 @@ require_once "auth-home.php";
                     <div class="articleMount">
                         <div class="textMount">
                             <h3>
-                                <?php echo $resultats['user_name'] ?>
+                                <?php echo $resultats['game_name'] ?>
                             </h3>
 
                             <div class="criteriaMount">
@@ -195,10 +195,10 @@ require_once "auth-home.php";
 
                                 <div class="difficulty">
 
-                                    <img src="./Assets/mounts/picto/star.png" class="picto">
+                                    <img src="./Assets//starr.png" class="picto">
 
                                         <?php 
-                                            echo $resultats['user_type'];
+                                            echo $resultats['user_name'];
                                         ?>
 
                                 </div>
