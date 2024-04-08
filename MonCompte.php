@@ -219,23 +219,22 @@ require_once "auth-home.php";
                                 <div class="mountDetail">
                                     <?php echo $resultats['game_name'] ?>
                                 </div>
-                                
-           
+
                                 <div>
-                                    <form action="<?php echo './Uploads/' . $resultats['user_game']?>" method="post">
-                                        
-                                        <?php if($resultats['user_game']){?>
-                                            <input type="submit" value="Download game file" name=""> 
-                                        <?php }?>
-                                    </form>
+                                <?php if($resultats['game_photo']){?>
+                                    <a href= "<?php echo './Uploads/' . $resultats['user_game'] ?>" download = "<?php echo $resultats['user_game']?>">Download game </a>
+                                <?php }?>
+
 
                                 </div>
                             
                                 <div>
                                     <form action="./MonCompte.php" method="post">
-                                        <input type="submit" value="Delete game" name="delete_game"> 
+                                        <input type="submit" value="Delete game file" name="delete_game"> 
                                             <?php if(isset($_POST["delete_game"])){
+                                               
                                                 unlink('./Uploads/' . $resultats['user_game']);
+                                                echo "bonjour";
                                             } ?>
                                     </form>
                                 </div>
