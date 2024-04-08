@@ -239,10 +239,12 @@ if (isset($_POST["delete_game"])) {
                                 </div>
                             
                                 <form action="./MonCompte.php" method="post">
-                                    <input type="submit" value="delete game" name="delete_game"> 
+                                    <input type="submit" value="delete game" name="delete game"> 
                                          
                                         <?php 
-                                        if (isset ($_SESSION["delete_game"])) {
+                                        
+
+                                        if ($_SESSION["delete_game"]) && isset ($_POST["delete game"])) {
                                         unlink('./Uploads/' . $resultats['user_game']);}
                                        
                                         
