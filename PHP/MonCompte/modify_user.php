@@ -332,14 +332,12 @@ if(isset($_POST["submit-register"])){
         $sth->bindParam(':photo', $photo, PDO::PARAM_STR);
     }
     $sth->bindParam(':id', $_SESSION['modify_ID'], PDO::PARAM_STR);
-    echo $sqlQuery;
     $sth->execute();
 
     if (!$sth->execute()) {
         print_r($sth->errorInfo()); // Afficher les détails de l'erreur PDO
     }
 
-    echo $_SESSION['modify_ID'];
 
 
     // header('Location:../../MonCompte.php');

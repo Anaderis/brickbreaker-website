@@ -22,7 +22,7 @@ body {
 .imgHeaderMount {
   background-image: url(../Assets/font_home.jpg);
   background-size:cover;
-  height:800px;
+  height:100%;
   width:100%;
 }
 
@@ -228,60 +228,7 @@ input[type=submit] {
 }
 
 /* -----------------------------Fiche article monture---------------------------- */
-.article {
-  width:90%;
-  margin:auto;
-  align-items: left;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  background-color: rgba(201, 190, 195, 0.18);
-  margin-bottom:10px;
-}
 
-h3 {
-  display: flex;
-  flex-direction: row;
-  align-items: left;
-  justify-items: left;
-  margin-left:10px;
-}
-
-.ligne{
-  width:100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.button {
-  min-width: 10em;
-  height: 50px;
-  cursor: pointer;
-  min-width: 8em;
-  height: 50px;
-  background:black;
-  border: 1px solid #000000;
-  transition: 0.5s ease-in-out;
-  font-size:large;
-  color: rgb(255, 255, 255);
-  border-radius: 6px;
-  font-size:large;
-  text-decoration: none;
-  margin : 10px;
-
-  margin-bottom: 30px;
-
-}
-
-.button:hover {
-  background: #9d5be6;
-  color: rgb(255, 255, 255);
-  border: 1px solid #9d5be6;
-  border-radius: 6px;
-  transition: 0.5s ease-in-out;
-  text-shadow: none;  
-}
 /* Compteur de résultat */
 .count {
   font-size: 1em;

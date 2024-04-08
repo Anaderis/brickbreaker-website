@@ -23,15 +23,9 @@ include "auth-home.php";
 
 <head>
 
-    <link rel="icon" type="image/x-icon" href="./Assets/icon.png" />
+    <link rel="icon" type="image/x-icon" href="./Assets/icon-Login.png" />
     <meta charset="utf-8" />
-    <title>WoW Collection</title>
-
-
-    <!-- Footer -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" />
+    <title>BrickBox</title>
 
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -39,7 +33,7 @@ include "auth-home.php";
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet" />
 
 
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/style-account.css" />
 
 
     <!-- <style>
@@ -56,8 +50,6 @@ include "auth-home.php";
 
 <body>
 
-
-
     <div class="imgHeaderMount">
 
         <header>
@@ -65,12 +57,12 @@ include "auth-home.php";
             <nav id="menus">
                 <ul>
                     <li>
-                        <a href="./wow-armory.php">
-                            <img src="./Assets/logo.png" alt="World of warcraft" class="logo" /></a>
+                        <a href="./home.php">
+                            <img src="./Assets/icon-Login.png" alt="BrickBox" class="logo" /></a>
                     </li>
-                    <li><a href="./bdd-mount.php">Games</a></li>
-                    <li><a href="./equipements.php">The team</a></li>
-                    <li><a href="./equipements.php">Contact us</a></li>
+                    <li><a href="#">Games</a></li>
+                    <li><a href="#">The team</a></li>
+                    <li><a href="./register_copy.php">Register</a></li>
 
                     <li>
                         <?php 
@@ -100,7 +92,7 @@ include "auth-home.php";
                 <div class="filter">
                 <h1>Welcome to Brick Breaker Box</h1>
                 <form action="home.php" method="post" class="formMount">
-                <input type="submit" value="Play" name="submit" class="login">
+                <input type="submit" value="Play" name="submit" class="logins">
                     </form>
                 </div>
             </div>
@@ -145,50 +137,52 @@ include "auth-home.php";
     foreach ($resultat as $resultats) {
         $i++;
         ?>
-       <div class="actu">
-            <article class="article">
-                <div class="articleMount">
 
-                    <div class="textMount">
-                        <h3>
-                            <?php echo $resultats['game_name'] ?>
-                        </h3>
-
-                        <div class="criteriaMount">
-
-
-                            <div class="difficulty">
-
-                                <img src="./Assets/mounts/picto/star.png" class="picto">
-
-                                    <?php 
-                                        echo 'Creator : ' . $resultats['user_name'];
-                                    ?>
-
+        <div class="article">
+                            <div>
+                                    <h3>
+                                        <?php echo $resultats['game_name'] ?>
+                                    </h3>
                             </div>
+                
+                
+                            <div class="ligne">
+                                
 
 
-                            <div class="mountDetail">
-                                <?php echo $resultats['user_email'] ?>
-                            </div>
-                            <div class="mountDetail">
-                                <?php echo $resultats['game_name'] ?>
-                            </div>
+                                <div>
 
-                        </div>
-                        <?php if($resultats['user_game']){?>
-                        <a href= "<?php echo './Uploads/' . $resultats['user_game'] ?>" download = "<?php echo $resultats['user_game']?>"> Download the game </a>
-                        <?php }?>
+                                    <img src="./Assets/star.png" class="picto">
 
-                        
+                                        <?php 
+                                            echo $resultats['user_name'];
+                                        ?>
+
+                                </div>
 
 
-                    </div>
-                    <img class="photoMount" alt="user" src="<?php echo './Uploads_photos/'. $resultats['game_photo'] ?>"  />
-                </div>
-            </article>
-        </div>
 
+                                
+
+                                
+                                <div>
+                                    
+                                    <form action="#" method="post">
+                                            <input type="submit" value="Play" class="button"> 
+                                    </form>        
+                                            
+                                </div>
+
+                                <div>
+                                        <?php if($resultats['game_photo']){?>
+                                            <a href= "<?php echo './Uploads/' . $resultats['user_game'] ?>" download = "<?php echo $resultats['user_game']?>">Download game </a>
+                                                    <?php }?>
+                                </div>
+                                <div >
+                                    <img  class="photoMount" alt="user" src="<?php echo './Uploads_photos/'. $resultats['game_photo'] ?>"  />
+                                </div> 
+            </div>                                    
+        </div>                                 
         <?php
     }
 

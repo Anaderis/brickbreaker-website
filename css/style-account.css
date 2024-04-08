@@ -1,3 +1,162 @@
+/*Menu*/
+
+.logo{
+  float: left;
+  width: 30%;
+  height: 20%;
+}
+
+#menus {
+    
+  background-color: rgb(255, 255, 255);
+  font-size:larger;
+
+}
+
+#menus ul {
+    
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  list-style:none;
+  color:black;
+  flex-wrap:wrap;
+  padding:1%;
+  
+
+}
+
+#menus ul a {
+    
+  color:black;
+  text-decoration: none;
+}
+
+
+nav{
+  width:100%;
+  height:50%;
+  margin:auto;
+  /* position:fixed; */
+
+}
+
+nav a {
+  --b: 0.1em;   /* the thickness of the line */
+  --c: #000000; /* the color*/ 
+
+  color: #0000;
+  padding-block: var(--b);
+  background: 
+    linear-gradient(var(--c) 50%,#000 0) 0% calc(100% - var(--_p,0%))/100% 200%,
+    linear-gradient(var(--c) 0 0) 0% var(--_p,0%)/var(--_p,0%) var(--b) no-repeat;
+  -webkit-background-clip: text,padding-box;
+          background-clip: text,padding-box;
+  transition: .3s var(--_s,0s) linear,background-size .2s calc(.2s - var(--_s,0s));
+}
+
+nav a:hover {
+  --_p: 100%;
+  --_s: .2s;
+}
+
+/* login */
+
+.login:hover {
+transition: 0.5s ease-in-out;
+background: #303030;
+}
+
+.login:hover svg {
+stroke-dashoffset: -480;
+}
+
+.login span {
+color: rgb(0, 0, 0);
+font-size: 18px;
+font-weight: 100;
+}
+
+.login {
+width: auto;
+height: auto;
+cursor: pointer;
+background:black;
+border: 1px solid #000000;
+transition: 0.5s ease-in-out;
+float: right;
+font-size:large;
+color: rgb(255, 255, 255);
+border-radius: 6px;
+padding : 1%;
+margin : 15px;
+}
+
+.login2 {
+width: auto;
+height: auto;
+cursor: pointer;
+background:black;
+border: 1px solid #000000;
+transition: 0.5s ease-in-out;
+float: right;
+font-size:large;
+color: rgb(255, 255, 255);
+border-radius: 6px;
+padding : 20%;
+}
+
+.logins {
+  min-width: 10em;
+  height: 50px;
+  cursor: pointer;
+  background:black;
+  border: 1px solid #000000;
+  transition: 0.5s ease-in-out;
+  font-size:large;
+  color: rgb(255, 255, 255);
+  border-radius: 6px;
+  float:inline-end;
+}
+
+
+
+
+.formMount {
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 3%;
+  flex-wrap:wrap;
+
+}
+
+.filter {
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  padding: 15%;
+  flex-wrap:wrap;
+  font-size: larger;
+color:white;
+
+  
+}
+header {
+    
+  width: 100%;
+}
+
+.imgHeaderMount {
+  background-image: url(../Assets/font_home.jpg);
+  background-size:cover;
+  height:800px;
+  width:100%;
+}
+
+
+
 .conteneur {
     
     font-family: "Montserrat", sans-serif;
@@ -111,8 +270,9 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    background-color: rgba(201, 190, 195, 0.18);
+    background-color: rgba(201, 190, 195, 0.95);
     margin-bottom:10px;
+    margin-top : 10px;
   }
 
   h3 {
