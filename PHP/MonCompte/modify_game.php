@@ -8,7 +8,6 @@ if (isset ($_SESSION["Loggedin"])) {
    
 }
 
-require_once "../../auth-home.php";
 
 
 if (isset($_POST["modify_game"])) {
@@ -23,22 +22,69 @@ $_SESSION['modify_ID'] = isset($_POST['modify_id']) ? $_POST['modify_id'] : "";
 <!DOCTYPE html>
 <html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/iconelogin" href="./Assets/icon-Login.png" />
+    <link rel="stylesheet" href="../../css/login.css">
+    <title>Sign In</title>
+
+    <!-- Police -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Reddit+Mono:wght@200..900&display=swap" rel="stylesheet">
+
+
+</head>
+
 <body>
 
-<form action="modify_game.php" method="post" enctype="multipart/form-data">
+<main>
+        <div class="already">
+            <button type="button" class="button"><a href="../../MonCompte.php">My account</a></button>
+        </div>
+                <div class=conteneur>
+                        <div class = logo_conteneur>
+                            <a href="./home.php">
+                                <img class="logo" src="../../Assets/icon-Login.png">
+                            </a>    
+                        </div>
 
-        <input type="text" name="gamename" placeholder="New game name">
+                        <div class=background_color>
+                        
+                        <form action="modify_game.php" method="post" enctype="multipart/form-data">
+                                    <div class=conteneur_again>
+                                        <div>
+                                            <h2>Modify the game</h2>
+                                        </div>
+                            
+                                        <div class="padding">   
+                                        <h6>New game name</h6>
+                                        <input type="text" name="gamename" placeholder="Enter new game name">
+                                        </div>
 
-        <label for="file">Upload your game</label>
-            <input type="file" name="file"> 
+                                        <div class="padding">  
+                                            <label for="file">Upload your game</label>
+                                            <input type="file" name="file"> 
+                                        </div>
 
-        <label for="file">Upload your photo</label>
-            <input type="file" name="photo"> 
+                                        <div class="padding">  
+                                            <label for="file">Upload your photo</label>
+                                            <input type="file" name="photo"> 
+                                        </div>
+
+                                        <div class=cta>
+                                            <input type="submit" name="submit-register" value="Register">
+                                        </div>
+        
             
 
-            <input type="submit" name="submit-register" value="Register">
+            
 
 </form>
+
+
 
 <?php
 
@@ -187,6 +233,9 @@ if(isset($_POST["submit-register"])){
 
     }
 
+    require_once "../../auth-home.php";
+
+
     $sqlQuery = 'UPDATE t_user';
 
     if ($isfile ==true) {
@@ -223,7 +272,6 @@ if(isset($_POST["submit-register"])){
     }
     
     $sth->bindParam(':id', $_SESSION['modify_ID'], PDO::PARAM_STR);
-    echo $sqlQuery;
     $sth->execute();
    
     
@@ -232,8 +280,7 @@ if(isset($_POST["submit-register"])){
     
 
 
-    // header('Location:../../MonCompte.php');
-    // exit;
+    
 }
 
 
