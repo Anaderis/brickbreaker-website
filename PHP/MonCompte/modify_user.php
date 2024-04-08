@@ -47,7 +47,7 @@ $_SESSION['modify_ID'] = isset($_POST['modify_id']) ? $_POST['modify_id'] : "";
         </div>
                 <div class=conteneur>
                         <div class = logo_conteneur>
-                            <a href="./home.php">
+                            <a href="../../home.php">
                                 <img class="logo" src="../../Assets/icon-Login.png">
                             </a>    
                         </div>

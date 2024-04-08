@@ -49,7 +49,7 @@ if (isset($_POST["delete_game"])) {
 
 <!-- ---------------------------Connexion ADMIN----------------------------------------  -->
 
-<?php if ($_SESSION['type'] = "admin") {?>
+<?php if ($_SESSION['type'] == "admin") {?>
 
 <body>
 
@@ -250,7 +250,7 @@ if (isset($_POST["delete_game"])) {
                                     
                                     <form action="./MonCompte.php" method="post">
                                             <input type="delete" value=<?php echo './Uploads/' . $resultats['user_game']?> name="delete_game" style="display : none">
-                                            <input type="submit" value="Delete" class="button"> 
+                                            <input type="submit" value="Delete file" class="button"> 
                                             
                                             <?php 
                                             
@@ -295,6 +295,8 @@ if (isset($_POST["delete_game"])) {
     
 
     </body>
-<?php }?>
+<?php } else {
+    echo "A venir, un avenir";
+}?>
 
 </html>
