@@ -54,7 +54,7 @@ input[type=submit] {
     margin-bottom: 30px;
 }
 
-input[type=text], input[type=password]{
+input[type=text], input[type=password], input[type=email]{
         min-width: 8em;
         height: 40px;
         background:white;

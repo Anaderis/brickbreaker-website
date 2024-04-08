@@ -244,7 +244,7 @@ if (isset($_POST["delete_game"])) {
                                         <?php 
                                         
 
-                                        if ($_SESSION["delete_game"]) && isset ($_POST["delete game"])) {
+                                        if (($_SESSION["delete_game"]) & isset ($_POST["delete game"])) {
                                         unlink('./Uploads/' . $resultats['user_game']);}
                                        
                                         

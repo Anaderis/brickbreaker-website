@@ -8,7 +8,7 @@ if (isset ($_SESSION["Loggedin"])) {
    
 }
 
-require_once "../../auth-home.php";
+// require_once "../../auth-home.php";
 
 
 if (isset($_POST["modify_player"])) {
@@ -23,33 +23,83 @@ $_SESSION['modify_ID'] = isset($_POST['modify_id']) ? $_POST['modify_id'] : "";
 <!DOCTYPE html>
 <html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/iconelogin" href="./Assets/icon-Login.png" />
+    <link rel="stylesheet" href="../../css/login.css">
+    <title>Modify user</title>
+
+    <!-- Police -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Reddit+Mono:wght@200..900&display=swap" rel="stylesheet">
+
+
+</head>
+
 <body>
 
-<form action="modify_user.php" method="post">
+<main>
+        <div class="already">
+            <button type="button" class="button"><a href="../../MonCompte.php">My account</a></button>
+        </div>
+                <div class=conteneur>
+                        <div class = logo_conteneur>
+                            <a href="./home.php">
+                                <img class="logo" src="../../Assets/icon-Login.png">
+                            </a>    
+                        </div>
 
-        <input type="text" name="Userregister" placeholder="New username">
+                        <div class=background_color>
 
+                            <form action="modify_user.php" method="post" enctype="multipart/form-data">
+                            <div class=conteneur_again>
 
-        <input type="email" name="emailregister" placeholder="New email adress">
-        <input type="password" name="passwordregister" placeholder="New Password">
-        <label for="type">Change status :</label>
+                            <div>
+                                            <h2>Modify the user</h2>
+                            </div>
+                            
+                            <div class="padding">   
+                                <input type="text" name="Userregister" placeholder="New username">
+                            </div>
 
-        <select id="status" name="type">
-                <option value="">...</option>
-                <option value="creator">Creator</option>
-                <option value="player">Player</option>
-        </select>
+                            <div class="padding"> 
+                            <input type="email" name="emailregister" placeholder="New email adress">
+                            </div>
+        
+                            <div class="padding"> 
+                            <input type="password" name="passwordregister" placeholder="New Password">
+                            </div>
 
-        <input type="text" name="gamename" placeholder="New game name">
+                            <div class="padding">                     
+                                <label for="type">Change status :</label>
 
-        <label for="file">Upload your game</label>
-            <input type="file" name="file"> 
+                                <select id="status" name="type">
+                                        <option value="">...</option>
+                                        <option value="creator">Creator</option>
+                                        <option value="player">Player</option>
+                                </select>
+                            </div>
 
-        <label for="file">Upload your photo</label>
-            <input type="file" name="photo"> 
+                            <div class="padding"> 
+                                <input type="text" name="gamename" placeholder="New game name">
+                            </div>
+
+                            <div class="padding"> 
+                                <label for="file">Upload your game</label>
+                                <input type="file" name="file"> 
+                            </div>
+
+                            <div class="padding"> 
+                                <label for="file">Upload your photo</label>
+                                <input type="file" name="photo"> 
+                            </div>
             
-
-            <input type="submit" name="submit-register" value="Register">
+                            <div class=cta>
+                                 <input type="submit" name="submit-register" value="Register">
+                            </div>
 
 </form>
 
@@ -80,7 +130,7 @@ if(isset($_POST["submit-register"])){
 
     /*--------------------AJOUT DU FILE DU JEU ---------------------------*/
 
-    if(isset($_FILES['file'])){
+    if(isset($_FILES['file']) && $_FILES['file']['size']>0){
 
     $tmpName = $_FILES['file']['tmp_name'];
     $name = $_FILES['file']['name'];
@@ -104,10 +154,6 @@ if(isset($_POST["submit-register"])){
     $array = in_array($extension, $extensions);
 
 
-    echo $extension;
-    echo gettype($extensions[0]);
-    echo $array;
-
 
     //Vérification d'un nom unique de fichier
 
@@ -116,7 +162,7 @@ if(isset($_POST["submit-register"])){
         //uniqid génère quelque chose comme ca : 5f586bf96dcd38.73540086
         $file = $uniqueName.".".$extension;
         //$file = 5f586bf96dcd38.73540086.jpg
-        move_uploaded_file($tmpName, './Uploads/'.$file);
+        move_uploaded_file($tmpName, '../../Uploads/'.$file);
         echo "fichier upload";
     
     }
@@ -140,7 +186,7 @@ if(isset($_POST["submit-register"])){
 
     /*--------------------AJOUT DE LA PHOTO ---------------------------*/
 
-    if(isset($_FILES['photo'])){
+    if(isset($_FILES['photo']) && $_FILES['photo']['size']>0){
 
         $tmpName = $_FILES['photo']['tmp_name'];
         $name = $_FILES['photo']['name'];
@@ -176,7 +222,7 @@ if(isset($_POST["submit-register"])){
             //uniqid génère quelque chose comme ca : 5f586bf96dcd38.73540086
             $photo = $uniqueName.".".$extension;
             //$file = 5f586bf96dcd38.73540086.jpg
-            move_uploaded_file($tmpName, './Uploads_photos/'.$photo);
+            move_uploaded_file($tmpName, '../../Uploads_photos/'.$photo);
             echo "fichier upload";
         
         }
@@ -209,6 +255,9 @@ if(isset($_POST["submit-register"])){
     if(strlen($passwordregister)<8){
         array_push($errors, "Password must be at least 8 characters long"); 
     }
+
+
+    require_once "../../auth-home.php";
 
     
     $sqlQuery = 'UPDATE t_user';
