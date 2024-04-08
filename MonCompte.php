@@ -13,6 +13,7 @@ error_reporting(E_ALL);
 
 if (isset($_POST["delete_game"])) {
 
+    echo var_dump($_SESSION);
     $_SESSION['delete_game'] = isset($_POST['delete_game']) ? $_POST['delete_game'] : "";
     
     }
@@ -116,18 +117,19 @@ if (isset($_POST["delete_game"])) {
             
             $i++;
             ?>
-           <div class="actu">
-                <article class="article">
-                    <div class="articleMount">
-                        <div class="textMount">
+           
+                
+           <div class="article">
+                        <div>
                             <h3>
                                 <?php echo $resultats['user_name'] ?>
                             </h3>
+                        </div>
 
-                            <div class="criteriaMount">
+                            
+                        <div class="ligne">
 
-
-                                <div class="difficulty">
+                                <div>
 
                                     <img src="./Assets/star.png" class="picto">
 
@@ -138,35 +140,39 @@ if (isset($_POST["delete_game"])) {
                                 </div>
 
 
-                                <div class="mountDetail">
+                                <div>
                                     <?php echo $resultats['user_email'] ?>
                                 </div>
-                                <div class="mountDetail">
-                                    <?php echo $resultats['game_name'] ?>
-                                </div>
 
+                        
+
+                            <div>
+                                <?php if($resultats['game_photo']){?>
+                                    <a href= "<?php echo './Uploads_photos/' . $resultats['game_photo'] ?>" download = "<?php echo $resultats['game_photo']?>">Download profile pic </a>
+                                <?php }?>
                             </div>
-                            <?php if($resultats['game_photo']){?>
-                            <a href= "<?php echo './Uploads_photos/' . $resultats['game_photo'] ?>" download = "<?php echo $resultats['game_photo']?>">Download profile pic </a>
-                            <?php }?>
 
-                            <form action="./PHP/MonCompte/supp_user.php" method="post">
-                             <input type="submit" value="Delete user" name="delete_player"> 
-                             <input type="delete" value="<?php echo $resultats['user_ID']?>" name="delete_id" style="display : none">                           
-                            </form>
+                            <div>
+                                <form action="./PHP/MonCompte/supp_user.php" method="post">
+                                    <input type="submit" value="Delete user" name="delete_player" class="button"> 
+                                    <input type="delete" value="<?php echo $resultats['user_ID']?>" name="delete_id" style="display : none">                           
+                                </form>
+                            </div>
 
-                            <form action="./PHP/MonCompte/modify_user.php" method="post" class="read" method="post" enctype="multipart/form-data">
-                             <input type="submit" value="Modify user" name="modify_player"> 
-                             <input type="modify" value="<?php echo $resultats['user_ID']?>" name="modify_id" style="display : none">                           
-                            </form>
+                            <div>
+                                <form action="./PHP/MonCompte/modify_user.php" method="post" class="read" method="post" enctype="multipart/form-data">
+                                    <input type="submit" value="Modify user" name="modify_player" class="button"> 
+                                    <input type="modify" value="<?php echo $resultats['user_ID']?>" name="modify_id" style="display : none">                           
+                                </form>
+                            </div>
 
 
-                        </div>
-                        <img class="photoMount" alt="user" src="<?php echo './Uploads_photos/'. $resultats['game_photo'] ?>"  />
-
-                    </div>
-                </article>
-            </div>
+                        <div>
+                            <img class="photoMount" alt="user" src="<?php echo './Uploads_photos/'. $resultats['game_photo'] ?>"  />
+                        </div>               
+                </div>
+            </div> 
+           
 
             <?php
         }
@@ -177,7 +183,7 @@ if (isset($_POST["delete_game"])) {
 
 
 
-    <?php 
+<?php 
 
     /*------------------------------     Gérer les JEUX  ------------------------------------------*/
 
@@ -185,34 +191,34 @@ if (isset($_POST["delete_game"])) {
     
     if (isset ($_POST["all_games"])) {
 
-    echo "<h2>All the games</h2>";
+        echo "<h2>All the games</h2>";
 
-    $i = 0;
+        $i = 0;
 
-    $sqlQuery = 'SELECT * FROM t_user WHERE user_type = "creator" ';
-    $sth = $dbco->query($sqlQuery);
-    $resultat = $sth->fetchAll(PDO::FETCH_ASSOC);
-    $sth->execute();
+        $sqlQuery = 'SELECT * FROM t_user WHERE user_type = "creator" ';
+        $sth = $dbco->query($sqlQuery);
+        $resultat = $sth->fetchAll(PDO::FETCH_ASSOC);
+        $sth->execute();
 
-    //On affiche les infos de la table
-    $keys = array_keys($resultat);
-
-
-    foreach ($resultat as $resultats) {
-        $i++;
-        ?>
-       <div class="actu">
-                <article class="article">
-                    <div class="articleMount">
-                        <div class="textMount">
-                            <h3>
-                                <?php echo $resultats['game_name'] ?>
-                            </h3>
-
-                            <div class="criteriaMount">
+        //On affiche les infos de la table
+        $keys = array_keys($resultat);
 
 
-                                <div class="difficulty">
+        foreach ($resultat as $resultats) {
+            $i++;
+            ?>
+
+            <div class="article">
+            <div>
+                                    <h3>
+                                        <?php echo $resultats['game_name'] ?>
+                                    </h3>
+            </div>
+                <div class="ligne">
+                                
+
+
+                                <div>
 
                                     <img src="./Assets/star.png" class="picto">
 
@@ -223,53 +229,60 @@ if (isset($_POST["delete_game"])) {
                                 </div>
 
 
-                                <div class="mountDetail">
-                                    <?php echo $resultats['user_email'] ?>
+                                <div>
+                                        <?php echo $resultats['user_type'] ?>
                                 </div>
-                                <div class="mountDetail">
-                                    <?php echo $resultats['game_name'] ?>
-                                </div>
+
+
+                                    
+
 
                                 <div>
-                                <?php if($resultats['game_photo']){?>
-                                    <a href= "<?php echo './Uploads/' . $resultats['user_game'] ?>" download = "<?php echo $resultats['user_game']?>">Download game </a>
-                                <?php }?>
 
-
-                                </div>
-                            
-                                <form action="./MonCompte.php" method="post">
-                                    <input type="submit" value="delete game" name="delete game"> 
-                                         
-                                        <?php 
-                                        
-
-                                        if (($_SESSION["delete_game"]) & isset ($_POST["delete game"])) {
-                                        unlink('./Uploads/' . $resultats['user_game']);}
-                                       
-                                        
-                                        ?>
-                                </form>
-                                
-                                <div>
                                     <form action="./PHP/MonCompte/modify_game.php" method="post" class="read" enctype="multipart/form-data">
-                                        <input type="submit" value="Modify game" name="modify_game"> 
-                                        <input type="modify" value="<?php echo $resultats['user_ID']?>" name="modify_id" style="display : none">                           
+                                            <input type="submit" value="Modify game" name="modify_game" class="button"> 
+                                            <input type="modify" value="<?php echo $resultats['user_ID']?>" name="modify_id" style="display : none">                           
                                     </form>
                                 </div>
-                            </div>
 
-                                <img class="photoMount" alt="user" src="<?php echo './Uploads_photos/'. $resultats['game_photo'] ?>"  />
-                        </div>                    
-                    </div>   
-                </article>
-        </div>
+                                
+                                <div>
+                                    
+                                    <form action="./MonCompte.php" method="post">
+                                            <input type="delete" value=<?php echo './Uploads/' . $resultats['user_game']?> name="delete_game" style="display : none">
+                                            <input type="submit" value="Delete" class="button"> 
+                                            
+                                            <?php 
+                                            
+                                            if( isset($_SESSION["delete_game"])){
+                                                if ($_SESSION["delete_game"] !== '') {
+                                                    unlink('./Uploads/' . $resultats['user_game']);
+                                                    $_SESSION["last_delete_game"] = $_SESSION["delete_game"];
+                                                    $_SESSION["delete_game"] = '';
+                                                }
+                                            }
+                                        
+                                            
+                                            ?>
+                                    </form>
+                                </div>
 
-        <?php
-    }
+                                <div>
+                                        <?php if($resultats['game_photo']){?>
+                                            <a href= "<?php echo './Uploads/' . $resultats['user_game'] ?>" download = "<?php echo $resultats['user_game']?>">Download game </a>
+                                                    <?php }?>
+                                </div>
+                                <div >
+                                    <img  class="photoMount" alt="user" src="<?php echo './Uploads_photos/'. $resultats['game_photo'] ?>"  />
+                                </div> 
+            </div>                                    
+        </div>                               
+<?php
 
-    echo "<p class=count> Résultats : $i</p>";
 }
+
+        echo "<p class=count> Résultats : $i</p>";
+    }
 ?>
 
 
