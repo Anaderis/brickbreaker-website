@@ -8,6 +8,16 @@ if (isset ($_SESSION["Loggedin"])) {
 require_once "auth-home.php";
 
 
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+if (isset($_POST["delete_game"])) {
+
+    $_SESSION['delete_game'] = isset($_POST['delete_game']) ? $_POST['delete_game'] : "";
+    
+    }
+
+
 /*---- Fonction pour supprimer un joueur -----*/
 // function deleteUser (){
 
@@ -228,16 +238,16 @@ require_once "auth-home.php";
 
                                 </div>
                             
-                                <div>
-                                    <form action="./MonCompte.php" method="post">
-                                        <input type="submit" value="Delete game file" name="delete_game"> 
-                                            <?php if(isset($_POST["delete_game"])){
-                                               
-                                                unlink('./Uploads/' . $resultats['user_game']);
-                                                echo "bonjour";
-                                            } ?>
-                                    </form>
-                                </div>
+                                <form action="./MonCompte.php" method="post">
+                                    <input type="submit" value="delete game" name="delete_game"> 
+                                         
+                                        <?php 
+                                        if (isset ($_SESSION["delete_game"])) {
+                                        unlink('./Uploads/' . $resultats['user_game']);}
+                                       
+                                        
+                                        ?>
+                                </form>
                                 
                                 <div>
                                     <form action="./PHP/MonCompte/modify_game.php" method="post" class="read" enctype="multipart/form-data">
