@@ -179,9 +179,10 @@ if(isset($_POST["submit-register"])){
         $sanitizedEmail = sanitizeEmail($emailregister);
         
         // Check si l'email existe déjà dans la base de données
-        $sqlCheck = "SELECT user_email FROM t_user WHERE user_email = '$sanitizedEmail'";
+        $sqlCheck = "SELECT user_email FROM t_user WHERE user_email = ':sanitizedemail'";
         $result = $conn->query($sqlCheck);
-        
+        $result ->bindParam(':sanitizedemail', $sanitizedEmail, PDO::PARAM_STR);
+
         if ($result->num_rows > 0) {
             array_push($errors, "Email already exist." );
         } else {
