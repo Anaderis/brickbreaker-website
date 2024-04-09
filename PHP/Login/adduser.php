@@ -44,10 +44,6 @@ if(isset($_POST["submit-register"])){
     $array = in_array($extension, $extensions);
 
 
-    // echo $extension;
-    // echo gettype($extensions[0]);
-    // echo $array;
-
 
     // Vérification d'un nom unique de fichier
 
