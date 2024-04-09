@@ -107,13 +107,12 @@ if (isset($_POST["delete_game"])) {
 
         //On affiche les infos de la table
         $keys = array_keys($resultat);
-        
+
 
         foreach ($resultat as $keys => $resultats) {
 
             // $_SESSION['resultats'] = $resultats;
             
-            echo $keys;
             
             $i++;
             ?>
